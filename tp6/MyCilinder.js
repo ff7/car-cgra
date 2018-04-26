@@ -1,54 +1,57 @@
 /**
- * MyCylinder
+ * MyCilinder
  * @constructor
  */
-class MyCilinder extends CGFobject {
-  constructor(scene, slices, stacks) {
-    super(scene);
+class MyCilinder extends CGFobject
+{
+	constructor(scene,slices,stacks) 
+	{
+		super(scene);
 
-    this.slices = slices;
-    this.stacks = stacks;
+		this.slices = slices;
+		this.stacks = stacks;
 
-    this.initBuffers();
-  };
+		this.initBuffers();
+	};
 
-  initBuffers() {
+	initBuffers() 
+	{	
+		this.vertices = [];
+		this.indices = [];
+		this.normals = [];
+		this.texCoords = [];
 
-  this.vertices = [];
-  this.normals = [];
-  this.indices = [];
-  this.texCoords = [];
+		let ang1, ang2;
 
-  this.getVertices();
+		let i, j, k;
+		var ang = 2*Math.PI/this.slices;
 
-  this.primitiveType = this.scene.gl.TRIANGLES;
+		for(j = 0; j <= this.stacks; j++){
+			for(i = 0; i < this.slices; i++){
 
-  this.initGLBuffers();
-  };
+				ang1 = Math.cos(i*ang);
+				ang2 = Math.sin(i*ang);
 
-  getVertices() {
-    var angle = (2 * Math.PI) / this.slices;
-    var stackSize = 1.0 / this.stacks;
+				this.vertices.push(ang1, ang2, j*1/this.stacks);
+				this.normals.push(ang1, ang2, 0);
+				this.texCoords.push(i*1/this.slices, j*1/this.stacks);
+					
+			}	
+		}
 
-    for (let k = 0; k <= this.stacks; k++) {
-      for (let i = 0; i <= this.slices; i++) {
-        this.vertices.push(Math.cos(i * angle), Math.sin(i * angle), k*stackSize);
-        this.normals.push(Math.cos(i * angle), Math.sin(i * angle), 0);
-        this.texCoords.push(i/this.slices,k*stackSize);
-      }
-    }
-
-    for (let k = 0; k <= this.stacks; k++) {
-      for (let i = 0; i <= this.slices; i++) {
-        if(k != 0 && i != 0) {
-          this.indices.push((this.slices+1)*k + i - 1, (this.slices+1)*(k-1) + i - 1, (this.slices+1)*(k-1) + i);
-					this.indices.push((this.slices+1)*k + i - 1, (this.slices+1)*(k-1) + i , (this.slices+1)*k + i);
-					if(i == this.slices) {
-						this.indices.push((this.slices+1)*(k-1) + i, (this.slices+1)*(k-1), (this.slices+1)*k + i);
-						this.indices.push((this.slices+1)*k + i, (this.slices+1)*(k-1), (this.slices+1)*k);
-					}
-				}
-      }
-    }
-  };
+		for(k = 0; k < (this.stacks*this.slices); k++){
+			if((k+1)%this.slices==0){
+    			this.indices.push(k,k+1-this.slices, k+1);
+     	        this.indices.push(k,k+1, k+this.slices);
+  			 }
+  			 if((k+1)%this.slices!=0){
+  			 	 this.indices.push(k, k+1, k+1+this.slices);
+    			 this.indices.push(k, k+1+this.slices, k+this.slices);
+  			 }
+		}
+			
+		this.primitiveType = this.scene.gl.TRIANGLES;
+		this.initGLBuffers();
+	};
 };
+

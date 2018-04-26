@@ -1,58 +1,82 @@
-
+/**
+ * MyLamp
+ * @constructor
+ */
 class MyLamp extends CGFobject
 {
-	constructor(scene, slices, stacks)
+	constructor(scene,slices,stacks) 
 	{
 		super(scene);
+
 		this.slices = slices;
 		this.stacks = stacks;
+
 		this.initBuffers();
 	};
-
+ 
 	initBuffers() 
-	{
-
-		let angulo = (2*Math.PI)/this.slices;
-		let ang = 0;
+	{	
 		this.vertices = [];
 		this.indices = [];
 		this.normals = [];
-		let v = 0;
-		let stackSize = 1/this.stacks;
+		let verts = 0;
 
-		for (let j = 0; j < this.stacks; j+=stackSize)
-		{
-			for (let i = 0; i < this.slices; i++)
-			{
-				this.vertices.push(Math.cos(ang), Math.sin(ang),j);
-				this.vertices.push(Math.cos(ang), Math.sin(ang),j+stackSize);
+		var i,j;
 
-				ang += angulo/2;
+		var ang1 = 2*Math.PI/this.slices;
+		let ang_slices = 0;
+		var ang2 = Math.PI/this.stacks;
+		let ang_stacks = 0; 
+		var x1,y1,z1;
+		var nX, nY, nZ;
 
-				let normX = Math.cos(ang);
-				let normY = Math.sin(ang);
+		var x2, y2, z2;
+		var nX2, nY2, nZ2;
 
-				ang += angulo/2;
+		for(j = 0; j < this.stacks ; j++){
 
-				this.vertices.push(Math.cos(ang), Math.sin(ang),j);
-				this.vertices.push(Math.cos(ang), Math.sin(ang),j + stackSize);
+			for(i = 0; i < this.slices; i++){
+					
+					x1 = Math.cos(ang_stacks) * Math.cos(ang_slices);
+					y1 = Math.cos(ang_stacks) * Math.sin(ang_slices);
+					z1 = Math.sin(ang_stacks);
 
-				this.normals.push(normX, normY, 0);
-				this.normals.push(normX, normY, 0);
-				this.normals.push(normX, normY, 0);
-				this.normals.push(normX, normY, 0);
+					nX = Math.cos(ang_stacks) * Math.cos(ang_slices);
+					nY = Math.cos(ang_stacks) * Math.sin(ang_slices);
+					nZ = Math.sin(ang_stacks);
 
-				this.indices.push(v+1,v+2,v+3);
-				this.indices.push(v,v+2,v+1);
+					this.vertices.push(x1,y1,z1);
+					this.normals.push(nX,nY,nZ);
 
-				v+=4;
-			}
+					verts+=1;
 
+					if(j == this.stacks-1){
+						this.indices.push(i%this.slices + j*this.slices);
+						this.indices.push((i+1)%this.slices + j*this.slices);
+						this.indices.push(this.stacks * this.slices);
+					}else{
+						this.indices.push(i % this.slices + j*this.slices);
+						this.indices.push((i+1)%this.slices + (j+1)*this.slices);
+						this.indices.push(i%this.slices + (j+1)*this.slices);
+
+						this.indices.push(i % this.slices + j*this.slices);
+						this.indices.push((i+1)%this.slices + j*this.slices);
+						this.indices.push((i+1)%this.slices + (j+1)*this.slices);	
+					}
+
+					ang_slices += ang1;
+					
+			}	
+			ang_stacks += ang2;
 		}
 
+		this.vertices.push(0,0,1);
+		this.normals.push(0,0,1);
+
+		console.log(this.vertices);
+		console.log(this.indices);
 
 		this.primitiveType = this.scene.gl.TRIANGLES;
-
 		this.initGLBuffers();
 	};
 };
