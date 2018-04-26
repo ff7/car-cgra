@@ -1,8 +1,4 @@
-/**
- * MyUnitCubeQuad
- * @constructor
- */
-class MyPaperPlane extends CGFobject
+class MyVehicle extends CGFobject
 {
 	constructor(scene, x, y, z) 
 	{
@@ -65,24 +61,24 @@ class MyPaperPlane extends CGFobject
 
 	};
 
-	update(currTime ) {
-		if(this.x>=0.4 && this.flag == false){
-			this.x -= 0.2;
-			this.y += 0.05;
-			this.lastUpdate = currTime;
-		}
-		else{ 
-			this.flag = true;
-			if(this.y>=0.45){
-				this.isFlyingVertical = true;
-				this.y -= 0.2;
-				this.rotZ -= (10);
-				this.rotX -= (10);
+// 	update(currTime ) {
+// 		if(this.x>=0.4 && this.flag == false){
+// 			this.x -= 0.2;
+// 			this.y += 0.05;
+// 			this.lastUpdate = currTime;
+// 		}
+// 		else{ 
+// 			this.flag = true;
+// 			if(this.y>=0.45){
+// 				this.isFlyingVertical = true;
+// 				this.y -= 0.2;
+// 				this.rotZ -= (10);
+// 				this.rotX -= (10);
 				
-				}
-			else {
-				this.isFlyingVertical = false;
-			}
-		}
-  };
+// 				}
+// 			else {
+// 				this.isFlyingVertical = false;
+// 			}
+// 		}
+//  };
 };

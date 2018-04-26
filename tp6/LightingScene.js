@@ -34,6 +34,7 @@ class LightingScene extends CGFscene
 		// Scene elements
 
 		this.floor = new MyQuad(this, 0, 10, 0, 12);
+		this.car = new MyVehicle(this, 0,0,0);
 
 		// Materials
 		this.materialDefault = new CGFappearance(this);
@@ -139,6 +140,15 @@ class LightingScene extends CGFscene
 			this.floorAppearance.apply();
 			this.floor.display();
 		this.popMatrix();
+
+		// Car
+
+		this.pushMatrix();
+			this.translate(7.5, 5, 7.5);;
+			this.floorAppearance.apply();
+			this.car.display();
+		this.popMatrix();
+
 
 
 
