@@ -8,55 +8,60 @@ class MyVehicle extends CGFobject
 		this.y = y;
 		this.z = z;
 
-		this.rotZ = -10;
-		this.rotX = 0;
-		this.flag = false;
+		this.roda = new MyCilinder(scene, 30, 20);
+		this.corpo = new MyUnitCubeQuad(scene);
 
-		this.isFlyingVertical = false;
-
-		this.rectangle =  new MyPolygonConstructor(this.scene, 4);
-		this.rectangle2 = new MyPolygonConstructor(this.scene, 4);
-		this.triangle = new MyPolygonConstructor(this.scene, 3);
-		this.triangle2 = new MyPolygonConstructor(this.scene, 3);
 	};
 
 	display() 
 	{
 		this.scene.pushMatrix();
-		this.scene.translate(0,-1.2,0);
-        this.scene.pushMatrix();
-        	this.scene.scale(1.2,0.3,0.5);
-        	this.scene.translate(-0.5,2.2,0);
-			this.scene.rotate(-Math.PI/4, 0, 0, 1);
-			this.scene.rotate(Math.PI, 0, 1, 0);
-			this.scene.translate(0, 1, 0);
-			this.scene.scale(0.5,0.5,0.5);
-			this.rectangle.display();
-		this.scene.popMatrix();
 
 		this.scene.pushMatrix();
-		  	this.scene.scale(1.2,0.3,0.5);
-        	this.scene.translate(-0.4,2.2,0);
-			this.scene.rotate(-Math.PI/4, 0, 0, 1);
-			this.scene.rotate(Math.PI, 0, 1, 0);
-			this.scene.translate(0, 1, 0);
-			this.scene.scale(0.5,-0.5,0.5);
-			this.rectangle2.display();
-		this.scene.popMatrix();
-
-		this.scene.pushMatrix();
-			this.scene.translate(0.5, 1, 0);
+			this.scene.translate(-5, -4.4, -0.5);
 			this.scene.rotate(-Math.PI/2, 1, 0, 0);
-			this.scene.scale(-1,1,1);
-			this.triangle.display();
+			this.scene.scale(-0.6,-0.6,0.6);
+			this.scene.rotate(Math.PI/2,1,0,0);
+			this.roda.display();
 		this.scene.popMatrix();
 
 		this.scene.pushMatrix();
-			this.scene.translate(0.5, 1, 0);
+			this.scene.translate(0, -4.4, -0.5);
 			this.scene.rotate(-Math.PI/2, 1, 0, 0);
-			this.scene.scale(-1,-1,1);
-			this.triangle.display();
+			this.scene.scale(-0.6,-0.6,0.6);
+			this.scene.rotate(Math.PI/2,1,0,0);
+			this.roda.display();
 		this.scene.popMatrix();
+
+		this.scene.pushMatrix();
+			this.scene.translate(-5, -4.4, -3);
+			this.scene.rotate(-Math.PI/2, 1, 0, 0);
+			this.scene.scale(-0.6,-0.6,0.6);
+			this.scene.rotate(Math.PI/2,1,0,0);
+			this.roda.display();
+		this.scene.popMatrix();
+
+		this.scene.pushMatrix();
+			this.scene.translate(0, -4.4, -3);
+			this.scene.rotate(-Math.PI/2, 1, 0, 0);
+			this.scene.scale(-0.6,-0.6,0.6);
+			this.scene.rotate(Math.PI/2,1,0,0);
+			this.roda.display();
+		this.scene.popMatrix();
+
+		this.scene.pushMatrix();
+			this.scene.scale(5,1,2);
+			this.scene.translate(-0.5,-4,-1);
+			this.corpo.display();
+		this.scene.popMatrix();
+
+		this.scene.pushMatrix();
+			this.scene.scale(3,1,2);
+			this.scene.translate(-0.8,-3,-1);
+			this.corpo.display();
+		this.scene.popMatrix();
+
+
 		this.scene.popMatrix();
 
 	};

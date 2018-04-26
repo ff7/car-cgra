@@ -35,6 +35,7 @@ class LightingScene extends CGFscene
 
 		this.floor = new MyQuad(this, 0, 10, 0, 12);
 		this.car = new MyVehicle(this, 0,0,0);
+		//this.test = new MyCilinder(this,0,0);
 
 		// Materials
 		this.materialDefault = new CGFappearance(this);
@@ -138,7 +139,7 @@ class LightingScene extends CGFscene
 			this.rotate(-90 * degToRad, 1, 0, 0);
 			this.scale(15, 15, 0.2);
 			this.floorAppearance.apply();
-			this.floor.display();
+			//this.floor.display();
 		this.popMatrix();
 
 		// Car
@@ -148,6 +149,12 @@ class LightingScene extends CGFscene
 			this.floorAppearance.apply();
 			this.car.display();
 		this.popMatrix();
+
+// 		this.pushMatrix();
+// 			this.translate(7.5, 5, 7.5);;
+// 			this.floorAppearance.apply();
+// 			this.test.display();
+// 		this.popMatrix();
 
 
 
