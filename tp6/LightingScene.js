@@ -35,7 +35,7 @@ class LightingScene extends CGFscene
 
 		this.floor = new MyQuad(this, 0, 10, 0, 12);
 		this.car = new MyVehicle(this, 0,0,0);
-		//this.test = new MyCilinder(this,0,0);
+		this.terrain = new MyTerrain(this);
 
 		// Materials
 		this.materialDefault = new CGFappearance(this);
@@ -46,7 +46,6 @@ class LightingScene extends CGFscene
 		this.floorAppearance.setSpecular(0.1,0.1,0.1,1);
 		this.floorAppearance.setShininess(120);
 		this.floorAppearance.loadTexture("../resources/images/floor.png");
-
 
 		this.setUpdatePeriod(1000/60);
 	};
@@ -133,33 +132,20 @@ class LightingScene extends CGFscene
 
 		// ---- BEGIN Scene drawing section
 
-		// Floor
+		// Terrain
 		this.pushMatrix();
 			this.translate(7.5, 0, 7.5);
 			this.rotate(-90 * degToRad, 1, 0, 0);
 			this.scale(15, 15, 0.2);
-			this.floorAppearance.apply();
-			//this.floor.display();
+			this.terrain.display();
 		this.popMatrix();
 
 		// Car
-
 		this.pushMatrix();
 			this.translate(7.5, 5, 7.5);;
 			this.floorAppearance.apply();
 			this.car.display();
 		this.popMatrix();
-
-// 		this.pushMatrix();
-// 			this.translate(7.5, 5, 7.5);;
-// 			this.floorAppearance.apply();
-// 			this.test.display();
-// 		this.popMatrix();
-
-
-
-
-		// ---- END Scene drawing section
 	};
 
 };

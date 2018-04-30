@@ -129,16 +129,3 @@ class Plane extends CGFobject{
 
 };
 
-
-class MyTerrain extends CGFobject{
-
-	constructor(scene) 
-	{
-		super(scene);
-
-		this.terrain = new Plane(this.scene,50,50);
-
-		this.terrainAppearance = new CGFappearance(this.scene);
-		//this.terrainAppearance.loadTexture("../resources/images/table.png");
-	};
-}
