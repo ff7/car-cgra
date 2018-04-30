@@ -1,3 +1,5 @@
+var degToRad = Math.PI / 180.0;
+
 class MyVehicle extends CGFobject
 {
 	constructor(scene, x, y, z) 
@@ -10,6 +12,7 @@ class MyVehicle extends CGFobject
 
 		this.roda = new MyCilinder(scene, 30, 20);
 		this.corpo = new MyUnitCubeQuad(scene);
+		this.farol = new MyLamp(scene,20,20);
 
 	};
 
@@ -61,7 +64,22 @@ class MyVehicle extends CGFobject
 			this.corpo.display();
 		this.scene.popMatrix();
 
+		//farol esquerdo
+		this.scene.pushMatrix();
+			this.scene.rotate(-90*degToRad,1,0,0);
+			this.scene.rotate(-90*degToRad,0,1,0);
+			this.scene.scale(0.3,0.3,0.3)
+			this.scene.translate(-12,5,-1);
+			this.farol.display();
+		this.scene.popMatrix();
 
+		//farol direito
+		this.scene.pushMatrix();
+			this.scene.rotate(-90*degToRad,1,0,0);
+			this.scene.rotate(-90*degToRad,0,1,0);
+			this.scene.scale(0.3,0.3,0.3)
+			this.scene.translate(-12,8.5,-1);
+			this.farol.display();
 		this.scene.popMatrix();
 
 	};
