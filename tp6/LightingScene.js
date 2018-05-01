@@ -23,7 +23,7 @@ class LightingScene extends CGFscene
 
 		this.enableTextures(true);
 
-		this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
+		this.gl.clearColor(0.7, 0.9, 1.0, 1.0);
 		this.gl.clearDepth(100.0);
 		this.gl.enable(this.gl.DEPTH_TEST);
 		this.gl.enable(this.gl.CULL_FACE);
@@ -52,7 +52,7 @@ class LightingScene extends CGFscene
 
 	initCameras()
 	{
-		this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(30, 30, 30), vec3.fromValues(0, 0, 0));
+		this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(35, 35, 35), vec3.fromValues(0, 0, 0));
 	};
 
 	initLights()
@@ -61,16 +61,16 @@ class LightingScene extends CGFscene
 
 		// Positions for four lights
 		this.lights[0].setPosition(4, 6, 1, 1);
-		this.lights[0].setVisible(true); // show marker on light position (different from enabled)
+		//this.lights[0].setVisible(true); // show marker on light position (different from enabled)
 
 		this.lights[1].setPosition(10.5, 6.0, 1.0, 1.0);
-		this.lights[1].setVisible(true); // show marker on light position (different from enabled)
+		//this.lights[1].setVisible(true); // show marker on light position (different from enabled)
 
 		this.lights[2].setPosition(10.5, 6.0, 5.0, 1.0);
-		this.lights[2].setVisible(true); // show marker on light position (different from enabled)
+		//this.lights[2].setVisible(true); // show marker on light position (different from enabled)
 
 		this.lights[3].setPosition(4, 6, 5, 1);
-		this.lights[3].setVisible(true); // show marker on light position (different from enabled)
+		//this.lights[3].setVisible(true); // show marker on light position (different from enabled)
 
 		this.lights[0].setAmbient(0, 0, 0, 1);
 		this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
@@ -95,7 +95,7 @@ class LightingScene extends CGFscene
 		this.lights[3].setConstantAttenuation(0);
 		this.lights[3].setLinearAttenuation(0);
 		this.lights[3].setQuadraticAttenuation(1);
-	  this.lights[3].enable();
+	  	this.lights[3].enable();
 	};
 
 	updateLights()
@@ -134,18 +134,16 @@ class LightingScene extends CGFscene
 
 		// Terrain
 		this.pushMatrix();
-			this.translate(7.5, 0, 7.5);
-			this.rotate(-90 * degToRad, 1, 0, 0);
-			this.scale(15, 15, 0.2);
 			this.terrain.display();
 		this.popMatrix();
 
 		// Car
 		this.pushMatrix();
 			this.translate(7.5, 5, 7.5);;
-			this.floorAppearance.apply();
+			//this.floorAppearance.apply();
 			this.car.display();
 		this.popMatrix();
+
 	};
 
 };

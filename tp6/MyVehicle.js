@@ -14,47 +14,62 @@ class MyVehicle extends CGFobject
 		this.corpo = new MyUnitCubeQuad(scene);
 		this.farol = new MyLamp(scene,20,20);
 
+		//Para já serve enquanto não alteramos muito o carro.
+		this.materialDefault = new CGFappearance(this.scene);
+		
+		this.pneuAppearance = new CGFappearance(this.scene);
+		this.pneuAppearance.loadTexture("../resources/images/pneu.png");
+
 	};
 
 	display() 
 	{
 		this.scene.pushMatrix();
-
+		
+		//roda
 		this.scene.pushMatrix();
 			this.scene.translate(-5, -4.4, -0.5);
 			this.scene.rotate(-Math.PI/2, 1, 0, 0);
 			this.scene.scale(-0.6,-0.6,0.6);
 			this.scene.rotate(Math.PI/2,1,0,0);
+			this.pneuAppearance.apply();
 			this.roda.display();
 		this.scene.popMatrix();
 
+		//roda
 		this.scene.pushMatrix();
 			this.scene.translate(0, -4.4, -0.5);
 			this.scene.rotate(-Math.PI/2, 1, 0, 0);
 			this.scene.scale(-0.6,-0.6,0.6);
 			this.scene.rotate(Math.PI/2,1,0,0);
+			this.pneuAppearance.apply();
 			this.roda.display();
 		this.scene.popMatrix();
 
+		//roda
 		this.scene.pushMatrix();
 			this.scene.translate(-5, -4.4, -3);
 			this.scene.rotate(-Math.PI/2, 1, 0, 0);
 			this.scene.scale(-0.6,-0.6,0.6);
 			this.scene.rotate(Math.PI/2,1,0,0);
+			this.pneuAppearance.apply();
 			this.roda.display();
 		this.scene.popMatrix();
 
+		//roda
 		this.scene.pushMatrix();
 			this.scene.translate(0, -4.4, -3);
 			this.scene.rotate(-Math.PI/2, 1, 0, 0);
 			this.scene.scale(-0.6,-0.6,0.6);
 			this.scene.rotate(Math.PI/2,1,0,0);
+			this.pneuAppearance.apply();
 			this.roda.display();
 		this.scene.popMatrix();
 
 		this.scene.pushMatrix();
 			this.scene.scale(5,1,2);
 			this.scene.translate(-0.5,-4,-1);
+			this.materialDefault.apply();
 			this.corpo.display();
 		this.scene.popMatrix();
 
