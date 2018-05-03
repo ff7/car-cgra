@@ -37,7 +37,7 @@ class LightingScene extends CGFscene
 		this.showAxis=true;
 
 		//Lights section
-		this.dayTime=false;
+		this.dayTime=true;
 		this.light_1=true;
 		this.light_2=true;
 
@@ -74,18 +74,13 @@ class LightingScene extends CGFscene
 		this.lights[1].setPosition(10.5, 6.0, 1.0, 1.0);
 		//this.lights[1].setVisible(true); // show marker on light position (different from enabled)
 
-		this.lights[2].setPosition(10.5, 6.0, 5.0, 1.0);
-		//this.lights[2].setVisible(true); // show marker on light position (different from enabled)
-
-		this.lights[3].setPosition(4, 6, 5, 1);
-		//this.lights[3].setVisible(true); // show marker on light position (different from enabled)
-		
 		//Farol esquerdo
-		this.lights[4].setPosition(-12, 5, -1);
+		this.lights[2].setPosition(7.8, 1.5, 4.9);
+		this.lights[2].setVisible(true);
 
 		//Farol direito
-		this.lights[5].setPosition(-12, 8.5, -1);
-
+		this.lights[3].setPosition(7.8, 1.5, 6);
+		this.lights[3].setVisible(true);
 
 		this.lights[0].setAmbient(0, 0, 0, 1);
 		this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
@@ -95,21 +90,19 @@ class LightingScene extends CGFscene
 		this.lights[1].setDiffuse(1.0, 1.0, 1.0, 1.0);
 		this.lights[1].enable();
 
-		this.lights[2].setAmbient(0, 0, 0, 1);
-		this.lights[2].setDiffuse(1.0, 1.0, 1.0, 1.0);
-		this.lights[2].setSpecular(1.0, 1.0, 1.0, 1)
-		this.lights[2].setConstantAttenuation(0);
-		this.lights[2].setLinearAttenuation(1);
-		this.lights[2].setQuadraticAttenuation(0);
-		this.lights[2].enable();
+		//Farol esquerdo
+	  	this.lights[2].setAmbient(0.2, 0.2, 0.2, 1.0);
+		this.lights[2].setDiffuse(0.8, 0.8, 0.8, 1.0);
+		this.lights[2].setSpecular(0.5, 0.5, 0.5, 1);
+		//this.lights[2].setSpotCutOff(60);
+		//this.lights[2].setSpotDirection(0,0,5);
 
-		this.lights[3].setAmbient(0, 0, 0, 1);
-		this.lights[3].setDiffuse(1.0, 1.0, 1.0, 1.0);
-		this.lights[3].setSpecular(1.0, 1.0, 0, 1)
-		this.lights[3].setConstantAttenuation(0);
-		this.lights[3].setLinearAttenuation(0);
-		this.lights[3].setQuadraticAttenuation(1);
-	  	this.lights[3].enable();
+		//Farol direito
+	  	this.lights[3].setAmbient(0.2, 0.2, 0.2, 1.0);
+		this.lights[3].setDiffuse(0.8, 0.8, 0.8, 1.0);
+		this.lights[3].setSpecular(0.5, 0.5, 0.5, 1);
+		//this.lights[3].setSpotCutOff(20);
+		//this.lights[3].setSpotDirection(0,0,1);
 	};
 
 	updateLights()
@@ -121,6 +114,18 @@ class LightingScene extends CGFscene
 			this.lights[0].enable();
 		}else{
 			this.lights[0].disable();
+		}
+
+		if(this.light_1 == true){
+			this.lights[2].enable();
+		}else{
+			this.lights[2].disable();
+		}
+
+		if(this.light_2 == true){
+			this.lights[3].enable();
+		}else{
+			this.lights[3].disable();
 		}
 	}
 
