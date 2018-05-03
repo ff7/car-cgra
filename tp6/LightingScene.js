@@ -30,22 +30,30 @@ class LightingScene extends CGFscene
 		this.gl.depthFunc(this.gl.LEQUAL);
 
 		this.axis = new CGFaxis(this);
+		
+		//GUI
+
+		//Axis section
+		this.showAxis=true;
+
+		//Lights section
+		this.dayTime=false;
+		this.light_1=true;
+		this.light_2=true;
+
+		this.speed=3;
+
+		//END GUI
 
 		// Scene elements
-
 		this.floor = new MyQuad(this, 0, 10, 0, 12);
 		this.car = new MyVehicle(this, 0,0,0);
 		this.terrain = new MyTerrain(this);
+		// Scene elements end
 
 		// Materials
 		this.materialDefault = new CGFappearance(this);
-   	 	
-		this.floorAppearance = new CGFappearance(this);
-		this.floorAppearance.setAmbient(0.6,0.6,0.9,1);
-		this.floorAppearance.setDiffuse(0.6,0.6,0.9,1);
-		this.floorAppearance.setSpecular(0.1,0.1,0.1,1);
-		this.floorAppearance.setShininess(120);
-		this.floorAppearance.loadTexture("../resources/images/floor.png");
+		// Materials end
 
 		this.setUpdatePeriod(1000/60);
 	};
@@ -71,11 +79,17 @@ class LightingScene extends CGFscene
 
 		this.lights[3].setPosition(4, 6, 5, 1);
 		//this.lights[3].setVisible(true); // show marker on light position (different from enabled)
+		
+		//Farol esquerdo
+		this.lights[4].setPosition(-12, 5, -1);
+
+		//Farol direito
+		this.lights[5].setPosition(-12, 8.5, -1);
+
 
 		this.lights[0].setAmbient(0, 0, 0, 1);
 		this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
-		this.lights[0].setSpecular(1.0, 1.0, 0, 1)
-		this.lights[0].enable();
+		this.lights[0].setSpecular(1.0, 1.0, 0, 1);
 
 		this.lights[1].setAmbient(0, 0, 0, 1);
 		this.lights[1].setDiffuse(1.0, 1.0, 1.0, 1.0);
@@ -102,6 +116,12 @@ class LightingScene extends CGFscene
 	{
 		for (var i = 0; i < this.lights.length; i++)
 			this.lights[i].update();
+
+		if(this.dayTime == true){
+			this.lights[0].enable();
+		}else{
+			this.lights[0].disable();
+		}
 	}
 
 
@@ -124,13 +144,13 @@ class LightingScene extends CGFscene
 		this.updateLights();
 
 		// Draw axis
-		this.axis.display();
+		if(this.showAxis == true){
+			this.axis.display();
+		}
 
 		this.materialDefault.apply();
 
 		// ---- END Background, camera and axis setup
-
-		// ---- BEGIN Scene drawing section
 
 		// Terrain
 		this.pushMatrix();
@@ -140,10 +160,14 @@ class LightingScene extends CGFscene
 		// Car
 		this.pushMatrix();
 			this.translate(7.5, 5, 7.5);;
-			//this.floorAppearance.apply();
 			this.car.display();
 		this.popMatrix();
 
+	};
+
+	doSomething()
+	{
+		console.log("Doing something. . .");
 	};
 
 };
