@@ -22,46 +22,47 @@ class MyTriangPrism extends CGFobject
 	{
 		this.scene.pushMatrix();
 
-		// Prism Esquerdo
+		// Prism Da Frente
 			this.scene.pushMatrix();
-			this.scene.scale(0.5,1.3,2);
-			this.scene.translate(-3.3,-2.8,-1.5);
+			this.scene.scale(0.5,1.18,2);
+			this.scene.translate(-3.3,-2.98,-1.5);
 			this.prism.display();
 		this.scene.popMatrix();
 
-		// Prisma Direito
+		// Prisma De Tras
 		this.scene.pushMatrix();
-			this.scene.scale(-0.5,1.3,-2);
-			this.scene.translate(8.3,-2.8,0.5);
+			this.scene.scale(-0.5,1.18,-2);
+			this.scene.translate(8.3,-2.98,0.5);
 			this.prism.display();
 		this.scene.popMatrix();
 
 		// Triangulo
 
 		this.scene.pushMatrix();
-			this.scene.scale(0.5,1.3,0.5)
-			this.scene.translate(6.5,-2.7,0);
-			//this.triangle.display();
+			this.scene.scale(0.5,1.18,0.5)
+			this.scene.translate(-3.3,-2.98,-2);
+			this.triangle.display();
 		this.scene.popMatrix();
 
 		this.scene.pushMatrix();
-			this.scene.scale(0.5,1.3,0.5);
-			this.scene.rotate(Math.PI,0,0,1);
-			this.scene.translate(-1.5,2.7,0);
-			//this.triangle.display();
+			this.scene.rotate(Math.PI, 0,0,1);
+			this.scene.scale(0.5,1.18,0.5)
+			this.scene.translate(8.3,2.98,-2);
+			this.triangle.display();
 		this.scene.popMatrix();
 
 		this.scene.pushMatrix();
-			this.scene.scale(-0.5,1.3,0.5)
-			this.scene.translate(-1.5,-2.7,-10);
-			//this.triangle.display();
+			this.scene.rotate(Math.PI, 0,1,0);
+			this.scene.scale(0.5,1.18,0.5)
+			this.scene.translate(8.3,-2.98,6);
+			this.triangle.display();
 		this.scene.popMatrix();
 
 		this.scene.pushMatrix();
-			this.scene.scale(-0.5,1.3,0.5);
-			this.scene.rotate(Math.PI,0,0,1);
-			this.scene.translate(6.5,2.7,-10);
-			//this.triangle.display();
+			this.scene.rotate(Math.PI, 1,0,0);
+			this.scene.scale(0.5,1.18,0.5)
+			this.scene.translate(-3.3,2.98,6);
+			this.triangle.display();
 		this.scene.popMatrix();
 
 	};
