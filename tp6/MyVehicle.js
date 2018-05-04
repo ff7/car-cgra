@@ -13,6 +13,8 @@ class MyVehicle extends CGFobject
 		this.roda = new MyCilinder(scene, 30, 20);
 		this.corpo = new MyUnitCubeQuad(scene);
 		this.farol = new MyLamp(scene,20,20);
+		this.jante = new MyClockImage(scene,20);
+		this.tejadilho = new MyTriangPrism(scene);
 
 		//Para já serve enquanto não alteramos muito o carro.
 		this.materialDefault = new CGFappearance(this.scene);
@@ -26,7 +28,7 @@ class MyVehicle extends CGFobject
 	{
 		this.scene.pushMatrix();
 		
-		//roda
+		//Roda Esquerda de Tras
 		this.scene.pushMatrix();
 			this.scene.translate(-5, -4.4, -0.5);
 			this.scene.rotate(-Math.PI/2, 1, 0, 0);
@@ -36,7 +38,7 @@ class MyVehicle extends CGFobject
 			this.roda.display();
 		this.scene.popMatrix();
 
-		//roda
+		//Roda Esquerda de Frente
 		this.scene.pushMatrix();
 			this.scene.translate(0, -4.4, -0.5);
 			this.scene.rotate(-Math.PI/2, 1, 0, 0);
@@ -46,7 +48,7 @@ class MyVehicle extends CGFobject
 			this.roda.display();
 		this.scene.popMatrix();
 
-		//roda
+		//Roda Direita de Tras
 		this.scene.pushMatrix();
 			this.scene.translate(-5, -4.4, -3);
 			this.scene.rotate(-Math.PI/2, 1, 0, 0);
@@ -56,7 +58,7 @@ class MyVehicle extends CGFobject
 			this.roda.display();
 		this.scene.popMatrix();
 
-		//roda
+		//Roda Direita de Frente
 		this.scene.pushMatrix();
 			this.scene.translate(0, -4.4, -3);
 			this.scene.rotate(-Math.PI/2, 1, 0, 0);
@@ -66,16 +68,18 @@ class MyVehicle extends CGFobject
 			this.roda.display();
 		this.scene.popMatrix();
 
+		// Corpo
 		this.scene.pushMatrix();
 			this.scene.scale(5,1,2);
 			this.scene.translate(-0.5,-4,-1);
 			this.materialDefault.apply();
 			this.corpo.display();
 		this.scene.popMatrix();
-
+		
+		// Corpo
 		this.scene.pushMatrix();
-			this.scene.scale(3,1,2);
-			this.scene.translate(-0.8,-3,-1);
+			this.scene.scale(2,1,2);
+			this.scene.translate(-1.45,-3,-1);
 			this.corpo.display();
 		this.scene.popMatrix();
 
@@ -95,6 +99,67 @@ class MyVehicle extends CGFobject
 			this.scene.scale(0.3,0.3,0.3)
 			this.scene.translate(-12,8.5,-1);
 			this.farol.display();
+		this.scene.popMatrix();
+
+
+		// Jantes Esquerda da Roda Esquerda da Frente
+		this.scene.pushMatrix();
+			this.scene.translate(0,-4.4,-0.5);
+			this.scene.scale(0.6,0.6,0.6);
+			this.jante.display();
+		this.scene.popMatrix();
+
+		// Jantes Direita da Roda Esquerda da Frente
+		this.scene.pushMatrix();
+			this.scene.translate(0,-4.4,-1);
+			this.scene.scale(0.6,-0.6,0.6);
+			this.jante.display();
+		this.scene.popMatrix();
+
+		// Jantes Esquerda da Roda Esquerda da Tras
+		this.scene.pushMatrix();
+			this.scene.translate(-5,-4.4,-0.5);
+			this.scene.scale(0.6,0.6,0.6);
+			this.jante.display();
+		this.scene.popMatrix();
+
+		// Jantes Direita da Roda Esquerda da Tras
+		this.scene.pushMatrix();
+			this.scene.translate(-5,-4.4,-1);
+			this.scene.scale(0.6,-0.6,0.6);
+			this.jante.display();
+		this.scene.popMatrix();
+
+		// Jantes Esquerda da Roda Direita da Frente
+		this.scene.pushMatrix();
+			this.scene.translate(0,-4.4,-3);
+			this.scene.scale(0.6,0.6,0.6);
+			this.jante.display();
+		this.scene.popMatrix();
+
+		// Jantes Direita da Roda Direita da Frente
+		this.scene.pushMatrix();
+			this.scene.translate(0,-4.4,-3.5);
+			this.scene.scale(0.6,-0.6,0.6);
+			this.jante.display();
+		this.scene.popMatrix();
+
+		// Jantes Esquerda da Roda Direita da Tras
+		this.scene.pushMatrix();
+			this.scene.translate(-5,-4.4,-3);
+			this.scene.scale(0.6,0.6,0.6);
+			this.jante.display();
+		this.scene.popMatrix();
+
+		// Jantes Direita da Roda Direita da Tras
+		this.scene.pushMatrix();
+			this.scene.translate(-5,-4.4,-3.5);
+			this.scene.scale(0.6,-0.6,0.6);
+			this.jante.display();
+		this.scene.popMatrix();
+
+		this.scene.pushMatrix();
+			this.tejadilho.display();
 		this.scene.popMatrix();
 
 	};
