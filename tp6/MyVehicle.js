@@ -22,6 +22,15 @@ class MyVehicle extends CGFobject
 		this.pneuAppearance = new CGFappearance(this.scene);
 		this.pneuAppearance.loadTexture("../resources/images/pneu.png");
 
+		this.janteAppearance = new CGFappearance(this.scene);
+		this.janteAppearance.loadTexture("../resources/images/jante.png");
+
+		this.redAppearance = new CGFappearance(this.scene);
+		//this.redAppearance.setTextureWrap("CLAMP_TO_EDGE","CLAMP_TO_EDGE");
+		//this.redAppearance.setTextureWrap("REPEAT","REPEAT");
+		this.redAppearance.loadTexture("../resources/images/darkRed.png");
+
+
 	};
 
 	display() 
@@ -70,18 +79,20 @@ class MyVehicle extends CGFobject
 
 		// Corpo
 		this.scene.pushMatrix();
-			this.scene.scale(5,1,2);
-			this.scene.translate(-0.5,-4,-1);
+			this.scene.scale(2,1,2);
+			this.scene.translate(-1.45,-3,-1);
 			this.materialDefault.apply();
 			this.corpo.display();
 		this.scene.popMatrix();
-		
+
 		// Corpo
 		this.scene.pushMatrix();
-			this.scene.scale(2,1,2);
-			this.scene.translate(-1.45,-3,-1);
+			this.scene.scale(5,1,2);
+			this.scene.translate(-0.5,-4,-1);
+			this.redAppearance.apply();
 			this.corpo.display();
 		this.scene.popMatrix();
+		
 
 		//farol esquerdo
 		this.scene.pushMatrix();
@@ -101,12 +112,20 @@ class MyVehicle extends CGFobject
 			this.farol.display();
 		this.scene.popMatrix();
 
+		// Prismas Triangulares
+		this.scene.pushMatrix();
+			this.redAppearance.apply();
+			this.tejadilho.display();
+		this.scene.popMatrix();
+
 
 		// Jantes Esquerda da Roda Esquerda da Frente
 		this.scene.pushMatrix();
 			this.scene.translate(0,-4.4,-0.5);
 			this.scene.scale(0.6,0.6,0.6);
+			this.janteAppearance.apply();
 			this.jante.display();
+			this.scene.popMatrix();
 		this.scene.popMatrix();
 
 		// Jantes Direita da Roda Esquerda da Frente
@@ -158,8 +177,6 @@ class MyVehicle extends CGFobject
 			this.jante.display();
 		this.scene.popMatrix();
 
-		this.scene.pushMatrix();
-			this.tejadilho.display();
 		this.scene.popMatrix();
 
 	};
