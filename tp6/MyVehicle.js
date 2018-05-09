@@ -26,9 +26,14 @@ class MyVehicle extends CGFobject
 		this.janteAppearance.loadTexture("../resources/images/jante.png");
 
 		this.redAppearance = new CGFappearance(this.scene);
-		//this.redAppearance.setTextureWrap("CLAMP_TO_EDGE","CLAMP_TO_EDGE");
+		this.redAppearance.setTextureWrap("CLAMP_TO_EDGE","CLAMP_TO_EDGE");
 		//this.redAppearance.setTextureWrap("REPEAT","REPEAT");
 		this.redAppearance.loadTexture("../resources/images/darkRed.png");
+
+		this.terrainAppearance = new CGFappearance(this.scene);
+		this.terrainAppearance.setTextureWrap("REPEAT","REPEAT");
+		this.terrainAppearance.loadTexture("../resources/images/terrain.png");
+		
 
 
 	};
@@ -81,7 +86,9 @@ class MyVehicle extends CGFobject
 		this.scene.pushMatrix();
 			this.scene.scale(2,1,2);
 			this.scene.translate(-1.45,-3,-1);
-			this.materialDefault.apply();
+			this.redAppearance.apply();
+			//this.materialDefault.apply();
+			//this.terrainAppearance.apply();
 			this.corpo.display();
 		this.scene.popMatrix();
 
@@ -89,6 +96,7 @@ class MyVehicle extends CGFobject
 		this.scene.pushMatrix();
 			this.scene.scale(5,1,2);
 			this.scene.translate(-0.5,-4,-1);
+			//this.terrainAppearance.apply();
 			this.redAppearance.apply();
 			this.corpo.display();
 		this.scene.popMatrix();
@@ -114,6 +122,7 @@ class MyVehicle extends CGFobject
 
 		// Prismas Triangulares
 		this.scene.pushMatrix();
+			//this.materialDefault.apply();
 			this.redAppearance.apply();
 			this.tejadilho.display();
 		this.scene.popMatrix();
@@ -181,8 +190,8 @@ class MyVehicle extends CGFobject
 
 	};
 
-// 	update(currTime ) {
-// 		if(this.x>=0.4 && this.flag == false){
+	update(currTime, w, s) {
+//		if(this.x>=0.4 && this.flag == false){
 // 			this.x -= 0.2;
 // 			this.y += 0.05;
 // 			this.lastUpdate = currTime;
@@ -200,5 +209,16 @@ class MyVehicle extends CGFobject
 // 				this.isFlyingVertical = false;
 // 			}
 // 		}
-//  };
+
+		if (w == true)
+		{
+			this.x += 0.1;
+		}
+
+		if (s == true)
+		{
+			this.x -= 0.1;
+		}
+
+ };
 };

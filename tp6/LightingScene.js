@@ -164,9 +164,28 @@ class LightingScene extends CGFscene
 
 		// Car
 		this.pushMatrix();
-			this.translate(7.5, 5, 7.5);;
+			this.translate(this.car.x + 7.5, this.car.y + 5, this.car.z + 7.5);
 			this.car.display();
 		this.popMatrix();
+
+	};
+
+	update(currTime) {
+		let w = false, s = false;
+
+		if (this.gui.isKeyPressed("KeyW"))
+			w = true;
+
+		if (this.gui.isKeyPressed("KeyS"))
+			s = true;
+		else
+			s = false;
+
+		this.lastTime = this.lastTime || 0;
+		this.deltaTime = currTime - this.lastTime;
+		this.lastTime = currTime;
+		this.car.update(currTime, w, s);
+		//this.checkKeys();
 
 	};
 
@@ -174,5 +193,23 @@ class LightingScene extends CGFscene
 	{
 		console.log("Doing something. . .");
 	};
+
+	checkKeys()
+	{
+		var text="Keys pressed: ";
+		var keysPressed=false;
+		if (this.gui.isKeyPressed("KeyW"))
+		{
+		text+=" W ";
+		keysPressed=true;
+		}
+		if (this.gui.isKeyPressed("KeyS"))
+		{
+		text+=" S ";
+		keysPressed=true;
+		}
+		if (keysPressed)
+		console.log(text);
+	}
 
 };
