@@ -171,20 +171,30 @@ class LightingScene extends CGFscene
 	};
 
 	update(currTime) {
-		let w = false, s = false;
+		let w = false, s = false, d = false, a = false;
 
 		if (this.gui.isKeyPressed("KeyW"))
 			w = true;
+		else
+			w = false;
 
 		if (this.gui.isKeyPressed("KeyS"))
 			s = true;
 		else
 			s = false;
+		if (this.gui.isKeyPressed("KeyD"))
+			d = true;
+		else
+			d = false;
+		if (this.gui.isKeyPressed("KeyA"))
+			a = true;
+		else
+			a = false;
 
 		this.lastTime = this.lastTime || 0;
 		this.deltaTime = currTime - this.lastTime;
 		this.lastTime = currTime;
-		this.car.update(currTime, w, s);
+		this.car.update(currTime, w, s, d, a);
 		//this.checkKeys();
 
 	};

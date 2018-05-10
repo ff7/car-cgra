@@ -10,6 +10,9 @@ class MyVehicle extends CGFobject
 		this.y = y;
 		this.z = z;
 
+		this.rotZ = 1;
+		this.rotY = 0;
+
 		this.roda = new MyCilinder(scene, 30, 20);
 		this.corpo = new MyUnitCubeQuad(scene);
 		this.farol = new MyLamp(scene,20,20);
@@ -48,6 +51,8 @@ class MyVehicle extends CGFobject
 			this.scene.rotate(-Math.PI/2, 1, 0, 0);
 			this.scene.scale(-0.6,-0.6,0.6);
 			this.scene.rotate(Math.PI/2,1,0,0);
+			this.scene.rotate(this.rotZ * Math.PI/2,0,0,1);
+			//this.scene.rotate(this.rotY * Math.PI/2,1,0,0);
 			this.pneuAppearance.apply();
 			this.roda.display();
 		this.scene.popMatrix();
@@ -58,6 +63,8 @@ class MyVehicle extends CGFobject
 			this.scene.rotate(-Math.PI/2, 1, 0, 0);
 			this.scene.scale(-0.6,-0.6,0.6);
 			this.scene.rotate(Math.PI/2,1,0,0);
+			this.scene.rotate(this.rotZ * Math.PI/2,0,0,1);
+			this.scene.rotate(this.rotY * Math.PI/2,1,0,0);
 			this.pneuAppearance.apply();
 			this.roda.display();
 		this.scene.popMatrix();
@@ -68,6 +75,8 @@ class MyVehicle extends CGFobject
 			this.scene.rotate(-Math.PI/2, 1, 0, 0);
 			this.scene.scale(-0.6,-0.6,0.6);
 			this.scene.rotate(Math.PI/2,1,0,0);
+			this.scene.rotate(this.rotZ * Math.PI/2,0,0,1);
+			//this.scene.rotate(this.rotY * Math.PI/2,1,0,0);
 			this.pneuAppearance.apply();
 			this.roda.display();
 		this.scene.popMatrix();
@@ -78,6 +87,8 @@ class MyVehicle extends CGFobject
 			this.scene.rotate(-Math.PI/2, 1, 0, 0);
 			this.scene.scale(-0.6,-0.6,0.6);
 			this.scene.rotate(Math.PI/2,1,0,0);
+			this.scene.rotate(this.rotZ * Math.PI/2,0,0,1);
+			this.scene.rotate(this.rotY * Math.PI/2,1,0,0);
 			this.pneuAppearance.apply();
 			this.roda.display();
 		this.scene.popMatrix();
@@ -132,15 +143,18 @@ class MyVehicle extends CGFobject
 		this.scene.pushMatrix();
 			this.scene.translate(0,-4.4,-0.5);
 			this.scene.scale(0.6,0.6,0.6);
+			this.scene.rotate(-1* this.rotZ * Math.PI/2,0,0,1);
+			this.scene.rotate(-1*this.rotY * Math.PI/2,1,0,0);
 			this.janteAppearance.apply();
 			this.jante.display();
-			this.scene.popMatrix();
 		this.scene.popMatrix();
 
 		// Jantes Direita da Roda Esquerda da Frente
 		this.scene.pushMatrix();
 			this.scene.translate(0,-4.4,-1);
 			this.scene.scale(0.6,-0.6,0.6);
+			this.scene.rotate(-1* this.rotZ * Math.PI/2,0,0,1);
+			this.scene.rotate(-1* this.rotY * Math.PI/2,1,0,0);
 			this.jante.display();
 		this.scene.popMatrix();
 
@@ -148,6 +162,8 @@ class MyVehicle extends CGFobject
 		this.scene.pushMatrix();
 			this.scene.translate(-5,-4.4,-0.5);
 			this.scene.scale(0.6,0.6,0.6);
+			this.scene.rotate(-1* this.rotZ * Math.PI/2,0,0,1);
+			//this.scene.rotate(-1*this.rotY * Math.PI/2,1,0,0);
 			this.jante.display();
 		this.scene.popMatrix();
 
@@ -155,6 +171,8 @@ class MyVehicle extends CGFobject
 		this.scene.pushMatrix();
 			this.scene.translate(-5,-4.4,-1);
 			this.scene.scale(0.6,-0.6,0.6);
+			this.scene.rotate(-1* this.rotZ * Math.PI/2,0,0,1);
+			//this.scene.rotate(this.rotY * Math.PI/2,1,0,0);
 			this.jante.display();
 		this.scene.popMatrix();
 
@@ -162,6 +180,8 @@ class MyVehicle extends CGFobject
 		this.scene.pushMatrix();
 			this.scene.translate(0,-4.4,-3);
 			this.scene.scale(0.6,0.6,0.6);
+			this.scene.rotate(-1* this.rotZ * Math.PI/2,0,0,1);
+			this.scene.rotate(-1*this.rotY * Math.PI/2,1,0,0);
 			this.jante.display();
 		this.scene.popMatrix();
 
@@ -169,6 +189,8 @@ class MyVehicle extends CGFobject
 		this.scene.pushMatrix();
 			this.scene.translate(0,-4.4,-3.5);
 			this.scene.scale(0.6,-0.6,0.6);
+			this.scene.rotate(-1* this.rotZ * Math.PI/2,0,0,1);
+			this.scene.rotate(-1*this.rotY * Math.PI/2,1,0,0);
 			this.jante.display();
 		this.scene.popMatrix();
 
@@ -176,6 +198,8 @@ class MyVehicle extends CGFobject
 		this.scene.pushMatrix();
 			this.scene.translate(-5,-4.4,-3);
 			this.scene.scale(0.6,0.6,0.6);
+			this.scene.rotate(-1* this.rotZ * Math.PI/2,0,0,1);
+			//this.scene.rotate(this.rotY * Math.PI/2,1,0,0);
 			this.jante.display();
 		this.scene.popMatrix();
 
@@ -183,6 +207,8 @@ class MyVehicle extends CGFobject
 		this.scene.pushMatrix();
 			this.scene.translate(-5,-4.4,-3.5);
 			this.scene.scale(0.6,-0.6,0.6);
+			this.scene.rotate(this.rotZ * Math.PI/2,0,0,1);
+			//this.scene.rotate(-1* this.rotY * Math.PI/2,1,0,0);
 			this.jante.display();
 		this.scene.popMatrix();
 
@@ -190,7 +216,7 @@ class MyVehicle extends CGFobject
 
 	};
 
-	update(currTime, w, s) {
+	update(currTime, w, s, d, a) {
 //		if(this.x>=0.4 && this.flag == false){
 // 			this.x -= 0.2;
 // 			this.y += 0.05;
@@ -213,11 +239,24 @@ class MyVehicle extends CGFobject
 		if (w == true)
 		{
 			this.x += 0.1;
+			this.rotZ += 0.1;
 		}
 
 		if (s == true)
 		{
 			this.x -= 0.1;
+			this.rotZ -= 0.1;
+		}
+
+		if (d == true)
+		{
+			if (this.rotY < 0.75)
+				this.rotY += 0.1;
+		}
+
+		if (a == true)
+		{	if (this.rotY > -0.75)
+				this.rotY -= 0.1;
 		}
 
  };
