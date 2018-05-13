@@ -52,6 +52,13 @@ class MyInterface extends CGFinterface {
 		groupLights.add(this.scene, 'dayTime');
 		groupLights.add(this.scene, 'light_1');
 		groupLights.add(this.scene, 'light_2');
+
+
+		//GRUPO DE TEXTURAS
+		var groupTexture=this.gui.addFolder("Texture");
+		groupTexture.open();
+		groupTexture.add(this.scene, 'currVehicleAppearance', this.scene.vehicleAppearancesList);
+		groupTexture.add(this.scene, 'currTerrainAppearance', this.scene.terrainAppearancesList);
 	
 
 		this.gui.add(this.scene, 'speed', -5, 5);
