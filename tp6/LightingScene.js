@@ -40,7 +40,7 @@ class LightingScene extends CGFscene
 
 		this.terrainAppearances = [];
 		this.currTerrainAppearance = 0;
-		this.terrainAppearancesList = ['Dirt', 'Snow', 'Sand'];
+		this.terrainAppearancesList = ['Dirt', 'Sand'];
 		//END GUI textures
 
 		//Axis section

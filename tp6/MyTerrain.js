@@ -14,10 +14,6 @@ class MyTerrain extends Plane
 		this.terrainAppearance.setTextureWrap("REPEAT","REPEAT");
 		this.terrainAppearance.loadTexture("../resources/images/terrain.png");
 
-		this.snowAppearance = new CGFappearance(this.scene);
-		this.snowAppearance.setTextureWrap("REPEAT","REPEAT");
-		this.snowAppearance.loadTexture("../resources/images/snow.png");
-
 		this.sandAppearance = new CGFappearance(this.scene);
 		this.sandAppearance.setTextureWrap("REPEAT","REPEAT");
 		this.sandAppearance.loadTexture("../resources/images/sand.png");
@@ -34,9 +30,8 @@ class MyTerrain extends Plane
 
 			if(this.scene.currTerrainAppearance == 'Dirt'|| this.scene.currTerrainAppearance == 0)
 				this.terrainAppearance.apply();
-			else if(this.scene.currTerrainAppearance == 'Snow')
-				this.snowAppearance.apply();
-			else if(this.scene.currTerrainAppearance == 'Sand')
+
+			if(this.scene.currTerrainAppearance == 'Sand')
 				this.sandAppearance.apply();
 
 			this.terrain.display();
