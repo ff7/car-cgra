@@ -53,12 +53,24 @@ class LightingScene extends CGFscene
 
 		this.speed=3;
 
+		this.altimetry= [[ 2.0 , 3.0 , 2.0, 4.0, 2.5, 2.4, 2.3, 1.3 ],
+						[ 2.0 , 3.0 , 2.0, 4.0, 7.5, 6.4, 4.3, 1.3 ],
+						[ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ],
+						[ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ],
+						[ 0.0 , 0.0 , 2.0, 4.0, 2.5, 2.4, 0.0, 0.0 ],
+						[ 0.0 , 0.0 , 2.0, 4.0, 3.5, 2.4, 0.0, 0.0 ],
+						[ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ],
+						[ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ],
+						[ 2.0 , 3.0 , 2.0, 1.0, 2.5, 2.4, 2.3, 1.3 ]
+						];
+
+
 		//END GUI
 
 		// Scene elements
 		this.floor = new MyQuad(this, 0, 10, 0, 12);
 		this.car = new MyVehicle(this, 0,0,0);
-		this.terrain = new MyTerrain(this);
+		this.terrain = new MyTerrain(this,50);
 		// Scene elements end
 
 		// Materials

@@ -4,11 +4,11 @@ MyTerrain Constructor
 
 class MyTerrain extends Plane
 {
-	constructor(scene)
+	constructor(scene, nrDivs)
 	{
 		super(scene);
 
-		this.terrain = new Plane(this.scene,0,5,0,5,50);
+		this.terrain = new Plane(this.scene,0,5,0,5,nrDivs);
 
 		this.terrainAppearance = new CGFappearance(this.scene);
 		this.terrainAppearance.setTextureWrap("REPEAT","REPEAT");
