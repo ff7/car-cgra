@@ -97,9 +97,12 @@ class MyVehicle extends CGFobject
 		this.scene.pushMatrix();
 			this.scene.scale(2,1,2);
 			this.scene.translate(-1.45,-3,-1);
-			this.redAppearance.apply();
-			//this.materialDefault.apply();
-			//this.terrainAppearance.apply();
+
+			if(this.scene.currVehicleAppearance == 'Red' || this.scene.currVehicleAppearance == 0)
+				this.redAppearance.apply();
+			else if(this.scene.currVehicleAppearance == 'NoText')
+				this.materialDefault.apply();
+
 			this.corpo.display();
 		this.scene.popMatrix();
 
@@ -107,8 +110,12 @@ class MyVehicle extends CGFobject
 		this.scene.pushMatrix();
 			this.scene.scale(5,1,2);
 			this.scene.translate(-0.5,-4,-1);
-			//this.terrainAppearance.apply();
-			this.redAppearance.apply();
+
+			if(this.scene.currVehicleAppearance == 'Red' || this.scene.currVehicleAppearance == 0)
+				this.redAppearance.apply();
+			else if(this.scene.currVehicleAppearance == 'NoText')
+				this.materialDefault.apply();
+
 			this.corpo.display();
 		this.scene.popMatrix();
 		
@@ -133,8 +140,12 @@ class MyVehicle extends CGFobject
 
 		// Prismas Triangulares
 		this.scene.pushMatrix();
-			//this.materialDefault.apply();
-			this.redAppearance.apply();
+
+			if(this.scene.currVehicleAppearance == 'Red' || this.scene.currVehicleAppearance == 0)
+				this.redAppearance.apply();
+			else if(this.scene.currVehicleAppearance == 'NoText')
+				this.materialDefault.apply();
+		
 			this.tejadilho.display();
 		this.scene.popMatrix();
 

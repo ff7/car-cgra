@@ -36,7 +36,7 @@ class LightingScene extends CGFscene
 		//GUI textures
 		this.vehicleAppearances = [];
 		this.currVehicleAppearance = 0;
-		this.vehicleAppearancesList = ['Black', 'White', 'NyanCat'];
+		this.vehicleAppearancesList = ['Red', 'NoText'];
 
 		this.terrainAppearances = [];
 		this.currTerrainAppearance = 0;
