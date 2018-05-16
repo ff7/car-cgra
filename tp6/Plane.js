@@ -11,6 +11,8 @@ class Plane extends CGFobject{
 		this.nrDivs = nrDivs;
 		this.patchLength = 1.0 / nrDivs;
 
+		this.altimetry = altimetry;
+
 		this.minS = minS || 0;
 		this.maxS = maxS || 0;
 		this.minT = minT || 0;
@@ -54,8 +56,8 @@ class Plane extends CGFobject{
 			var xCoord = -0.5;
 			for (var i = 0; i <= this.nrDivs; i++) 
 			{
-				//altimetry wtf
-				z = this.scene.altimetry[i][j];
+				
+				z = this.altimetry[i][j];
 				this.vertices.push(xCoord, yCoord, z);
 				
 				this.texCoords.push(s + increaseS*i,t + increaseT*j);

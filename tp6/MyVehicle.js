@@ -17,7 +17,7 @@ class MyVehicle extends CGFobject
 		this.corpo = new MyUnitCubeQuad(scene);
 		this.farol = new MyLamp(scene,20,20);
 		this.jante = new MyClockImage(scene,20);
-		this.tejadilho = new MyTriangPrism(scene);
+		this.tejadilho = new MyTrapezoid(scene, 1, 2, 1);
 
 		//Para já serve enquanto não alteramos muito o carro.
 		this.materialDefault = new CGFappearance(this.scene);
@@ -29,7 +29,7 @@ class MyVehicle extends CGFobject
 		this.janteAppearance.loadTexture("../resources/images/jante.png");
 
 		this.redAppearance = new CGFappearance(this.scene);
-		this.redAppearance.setTextureWrap("CLAMP_TO_EDGE","CLAMP_TO_EDGE");
+		//this.redAppearance.setTextureWrap("CLAMP_TO_EDGE","CLAMP_TO_EDGE");
 		//this.redAppearance.setTextureWrap("REPEAT","REPEAT");
 		this.redAppearance.loadTexture("../resources/images/darkRed.png");
 
@@ -91,17 +91,17 @@ class MyVehicle extends CGFobject
 			this.roda.display();
 		this.scene.popMatrix();
 
-		// Corpo
+		// Tejadilho
 		this.scene.pushMatrix();
 			this.scene.scale(2,1,2);
-			this.scene.translate(-1.45,-3,-1);
+			this.scene.translate(-1.50,-3,-1.5);
 
-			if(this.scene.currVehicleAppearance == 'Red' || this.scene.currVehicleAppearance == 0)
-				this.redAppearance.apply();
-			else if(this.scene.currVehicleAppearance == 'NoText')
-				this.materialDefault.apply();
+			//if(this.scene.currVehicleAppearance == 'Red' || this.scene.currVehicleAppearance == 0)
+			//	this.redAppearance.apply();
+			//else if(this.scene.currVehicleAppearance == 'NoText')
+			//	this.materialDefault.apply();
 
-			this.corpo.display();
+			this.tejadilho.display();
 		this.scene.popMatrix();
 
 		// Corpo
@@ -135,18 +135,6 @@ class MyVehicle extends CGFobject
 			this.scene.translate(-12,8.5,-1);
 			this.farol.display();
 		this.scene.popMatrix();
-
-		// Prismas Triangulares
-		this.scene.pushMatrix();
-
-			if(this.scene.currVehicleAppearance == 'Red' || this.scene.currVehicleAppearance == 0)
-				this.redAppearance.apply();
-			else if(this.scene.currVehicleAppearance == 'NoText')
-				this.materialDefault.apply();
-		
-			this.tejadilho.display();
-		this.scene.popMatrix();
-
 
 		// Jantes Esquerda da Roda Esquerda da Frente
 		this.scene.pushMatrix();
@@ -248,29 +236,41 @@ class MyVehicle extends CGFobject
 		if (w == true)
 		{
 			this.x += 0.1;
-			this.rotZ += 0.1;
+			this.rotZ += 0.1;	
+
+			if (d == true)
+			{
+				if (this.rotY < 0.75)
+					this.rotY += 0.1;
+				this.z+=0.1;
+			}
+
+			if (a == true)
+			{	
+				if (this.rotY > -0.75)
+					this.rotY -= 0.1;
+				this.z-=0.1;
+			}
 		}
 
 		if (s == true)
 		{
 			this.x -= 0.1;
 			this.rotZ -= 0.1;
+
+			if (d == true)
+			{
+				if (this.rotY < 0.75)
+					this.rotY += 0.1;
+				this.z+=0.1;
+			}
+
+			if (a == true)
+			{	
+				if (this.rotY > -0.75)
+					this.rotY -= 0.1;
+				this.z-=0.1;
+			}
 		}
-
-		if (d == true)
-		{
-			if (this.rotY < 0.75)
-				this.rotY += 0.1;
-			
-			this.z+=0.1;
-		}
-
-		if (a == true)
-		{	if (this.rotY > -0.75)
-				this.rotY -= 0.1;
-
-			this.z-=0.1;
-		}
-
  };
 };

@@ -6,9 +6,7 @@ class MyTerrain extends Plane
 {
 	constructor(scene, nrDivs, altimetry)
 	{
-		super(scene);
-
-		this.terrain = new Plane(this.scene, 0.0, 5.0, 0.0, 5.0, nrDivs, altimetry);
+		super(scene, 0, 5, 0, 5, nrDivs, altimetry);
 
 		this.terrainAppearance = new CGFappearance(this.scene);
 		this.terrainAppearance.setTextureWrap("REPEAT","REPEAT");
@@ -34,7 +32,7 @@ class MyTerrain extends Plane
 			if(this.scene.currTerrainAppearance == 'Sand')
 				this.sandAppearance.apply();
 
-			this.terrain.display();
+			super.display();
 		this.scene.popMatrix();
 	}
 };
