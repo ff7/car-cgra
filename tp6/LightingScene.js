@@ -72,7 +72,7 @@ class LightingScene extends CGFscene
 		this.car = new MyVehicle(this, 0,0,0);
 		this.terrain = new MyTerrain(this, 8, this.altimetry);
 
-		this.skyDome = new MySkyDome(this, 0, 1, 0, 1);
+		this.skyDome = new MySkyDome(this, 20, 20);
 
 		// Scene elements end
 
@@ -186,7 +186,12 @@ class LightingScene extends CGFscene
 		this.popMatrix();
 
 		//SkyDome
-		//this.skyDome.display();
+		this.pushMatrix();
+			this.scale(100,100,100);
+			this.rotate(-Math.PI/2,1,0,0);
+			//this.translate(0,0,5);
+			//this.skyDome.display();
+		this.popMatrix();
 	};
 
 	update(currTime) {
