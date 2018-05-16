@@ -249,39 +249,27 @@ class MyVehicle extends CGFobject
 		{
 			this.x += 0.1;
 			this.rotZ += 0.1;
-
-			if (d == true) {
-				this.z += 0.1;
-			}
-
-			if ( a == true ){
-				this.z -=0.1;
-			}
 		}
 
 		if (s == true)
 		{
 			this.x -= 0.1;
 			this.rotZ -= 0.1;
-
-			if( d == true ){
-				this.z += 0.1;
-			}
-
-			if( a == true ){
-				this.z -= 0.1;
-			}
 		}
 
 		if (d == true)
 		{
 			if (this.rotY < 0.75)
 				this.rotY += 0.1;
+			
+			this.z+=0.1;
 		}
 
 		if (a == true)
 		{	if (this.rotY > -0.75)
 				this.rotY -= 0.1;
+
+			this.z-=0.1;
 		}
 
  };
