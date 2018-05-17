@@ -71,7 +71,7 @@ class LightingScene extends CGFscene
 		this.floor = new MyQuad(this, 0, 10, 0, 12);
 		this.car = new MyVehicle(this, 0,0,0);
 		this.terrain = new MyTerrain(this, 8, this.altimetry);
-
+		this.crane = new MyCrane(this,0,0,0);
 		this.skyDome = new MySkyDome(this, 20, 20);
 
 		// Scene elements end
@@ -182,6 +182,7 @@ class LightingScene extends CGFscene
 		// Car
 		this.pushMatrix();
 			this.translate(this.car.x + 7.5, this.car.y + 5, this.car.z + 7.5);
+			this.rotate(this.car.rotY * degToRad, 0,1,0);
 			this.car.display();
 		this.popMatrix();
 
@@ -191,6 +192,10 @@ class LightingScene extends CGFscene
 			this.rotate(-Math.PI/2,1,0,0);
 			//this.translate(0,0,5);
 			//this.skyDome.display();
+		this.popMatrix();
+
+		this.pushMatrix();
+			//this.crane.display();
 		this.popMatrix();
 	};
 
@@ -207,18 +212,24 @@ class LightingScene extends CGFscene
 		else
 			s = false;
 		if (this.gui.isKeyPressed("KeyD"))
+		{
+						this.car.rotY += 2;
 			d = true;
+		}
 		else
 			d = false;
 		if (this.gui.isKeyPressed("KeyA"))
+		{
+			this.car.rotY -= 2;
 			a = true;
+		}
 		else
 			a = false;
 
 		this.lastTime = this.lastTime || 0;
 		this.deltaTime = currTime - this.lastTime;
 		this.lastTime = currTime;
-		this.car.update(currTime, w, s, d, a);
+		this.car.update(currTime, w, s, d, a, this.rotZ);
 		//this.checkKeys();
 
 	};
@@ -256,6 +267,8 @@ class LightingScene extends CGFscene
 
 		text+=" D ";
 		keysPressed=true;
+		this.rotY += 0.1;
+		console.log(this.rotY);
 
 		}
 
@@ -264,6 +277,7 @@ class LightingScene extends CGFscene
 
 		text+=" A ";
 		keysPressed=true;
+		this.rotY -= 0.1;
 
 		}
 		

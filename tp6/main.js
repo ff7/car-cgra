@@ -23,6 +23,8 @@ serialInclude([
 	'MyTriangPrism.js',
 	'MyTrapezoid.js',
 	'MySkyDome.js',
+	'MyWheel.js',
+	'MyCrane.js',
 
 	main=function() {
 		var app = new CGFapplication(document.body);

@@ -13,21 +13,14 @@ class MyVehicle extends CGFobject
 		this.rotZ = 1;
 		this.rotY = 0;
 
-		this.roda = new MyCilinder(scene, 30, 20);
 		this.corpo = new MyUnitCubeQuad(scene);
 		this.farol = new MyLamp(scene,20,20);
-		this.jante = new MyClockImage(scene,20);
 		this.tejadilho = new MyTrapezoid(scene, 1, 2, 1);
+		this.wheel = new MyWheel(scene, 0,0,0);
 
 		//Para já serve enquanto não alteramos muito o carro.
 		this.materialDefault = new CGFappearance(this.scene);
 		
-		this.pneuAppearance = new CGFappearance(this.scene);
-		this.pneuAppearance.loadTexture("../resources/images/pneu.png");
-
-		this.janteAppearance = new CGFappearance(this.scene);
-		this.janteAppearance.loadTexture("../resources/images/jante.png");
-
 		this.redAppearance = new CGFappearance(this.scene);
 		//this.redAppearance.setTextureWrap("CLAMP_TO_EDGE","CLAMP_TO_EDGE");
 		//this.redAppearance.setTextureWrap("REPEAT","REPEAT");
@@ -43,54 +36,6 @@ class MyVehicle extends CGFobject
 	{
 		this.scene.pushMatrix();
 		
-		//Roda Esquerda de Tras
-		this.scene.pushMatrix();
-			this.scene.translate(-5, -4.4, -0.5);
-			this.scene.rotate(-Math.PI/2, 1, 0, 0);
-			this.scene.scale(-0.6,-0.6,0.6);
-			this.scene.rotate(Math.PI/2,1,0,0);
-			this.scene.rotate(this.rotZ * Math.PI/2,0,0,1);
-			//this.scene.rotate(this.rotY * Math.PI/2,1,0,0);
-			this.pneuAppearance.apply();
-			this.roda.display();
-		this.scene.popMatrix();
-
-		//Roda Esquerda de Frente
-		this.scene.pushMatrix();
-			this.scene.translate(0, -4.4, -0.5);
-			this.scene.rotate(-Math.PI/2, 1, 0, 0);
-			this.scene.scale(-0.6,-0.6,0.6);
-			this.scene.rotate(Math.PI/2,1,0,0);
-			this.scene.rotate(this.rotZ * Math.PI/2,0,0,1);
-			this.scene.rotate(this.rotY * Math.PI/2,1,0,0);
-			this.pneuAppearance.apply();
-			this.roda.display();
-		this.scene.popMatrix();
-
-		//Roda Direita de Tras
-		this.scene.pushMatrix();
-			this.scene.translate(-5, -4.4, -3);
-			this.scene.rotate(-Math.PI/2, 1, 0, 0);
-			this.scene.scale(-0.6,-0.6,0.6);
-			this.scene.rotate(Math.PI/2,1,0,0);
-			this.scene.rotate(this.rotZ * Math.PI/2,0,0,1);
-			//this.scene.rotate(this.rotY * Math.PI/2,1,0,0);
-			this.pneuAppearance.apply();
-			this.roda.display();
-		this.scene.popMatrix();
-
-		//Roda Direita de Frente
-		this.scene.pushMatrix();
-			this.scene.translate(0, -4.4, -3);
-			this.scene.rotate(-Math.PI/2, 1, 0, 0);
-			this.scene.scale(-0.6,-0.6,0.6);
-			this.scene.rotate(Math.PI/2,1,0,0);
-			this.scene.rotate(this.rotZ * Math.PI/2,0,0,1);
-			this.scene.rotate(this.rotY * Math.PI/2,1,0,0);
-			this.pneuAppearance.apply();
-			this.roda.display();
-		this.scene.popMatrix();
-
 		// Tejadilho
 		this.scene.pushMatrix();
 			this.scene.scale(2,1,2);
@@ -136,140 +81,85 @@ class MyVehicle extends CGFobject
 			this.farol.display();
 		this.scene.popMatrix();
 
-		// Jantes Esquerda da Roda Esquerda da Frente
+		// Roda Esquerda de Tras
 		this.scene.pushMatrix();
-			this.scene.translate(0,-4.4,-0.5);
+			this.scene.translate(-5,-4.4,6.8 -8);
 			this.scene.scale(0.6,0.6,0.6);
-			this.scene.rotate(-1* this.rotZ * Math.PI/2,0,0,1);
-			this.scene.rotate(-1*this.rotY * Math.PI/2,1,0,0);
-			this.janteAppearance.apply();
-			this.jante.display();
+			this.scene.rotate(-this.rotZ*Math.PI/2,0,0,1);
+			this.wheel.display();
 		this.scene.popMatrix();
 
-		// Jantes Direita da Roda Esquerda da Frente
+		// Roda Direita de Tras
 		this.scene.pushMatrix();
-			this.scene.translate(0,-4.4,-1);
-			this.scene.scale(0.6,-0.6,0.6);
-			this.scene.rotate(-1* this.rotZ * Math.PI/2,0,0,1);
-			this.scene.rotate(-1* this.rotY * Math.PI/2,1,0,0);
-			this.jante.display();
-		this.scene.popMatrix();
-
-		// Jantes Esquerda da Roda Esquerda da Tras
-		this.scene.pushMatrix();
-			this.scene.translate(-5,-4.4,-0.5);
+			this.scene.translate(-5,-4.4,6.8-2.5 - 8);
 			this.scene.scale(0.6,0.6,0.6);
-			this.scene.rotate(-1* this.rotZ * Math.PI/2,0,0,1);
-			//this.scene.rotate(-1*this.rotY * Math.PI/2,1,0,0);
-			this.jante.display();
+			this.scene.rotate(-this.rotZ*Math.PI/2,0,0,1);
+			this.wheel.display();
 		this.scene.popMatrix();
 
-		// Jantes Direita da Roda Esquerda da Tras
+		// Roda Esquerda de Frente
 		this.scene.pushMatrix();
-			this.scene.translate(-5,-4.4,-1);
-			this.scene.scale(0.6,-0.6,0.6);
-			this.scene.rotate(-1* this.rotZ * Math.PI/2,0,0,1);
-			//this.scene.rotate(this.rotY * Math.PI/2,1,0,0);
-			this.jante.display();
-		this.scene.popMatrix();
-
-		// Jantes Esquerda da Roda Direita da Frente
-		this.scene.pushMatrix();
-			this.scene.translate(0,-4.4,-3);
+			this.scene.translate(0,-4.4,6.8 -8);
 			this.scene.scale(0.6,0.6,0.6);
-			this.scene.rotate(-1* this.rotZ * Math.PI/2,0,0,1);
-			this.scene.rotate(-1*this.rotY * Math.PI/2,1,0,0);
-			this.jante.display();
+			this.scene.rotate(this.rotY*Math.PI/2, 0,1, 0);
+			this.scene.rotate(-this.rotZ*Math.PI/2,0,0,1);
+			this.wheel.display();
 		this.scene.popMatrix();
 
-		// Jantes Direita da Roda Direita da Frente
+		// Roda Direita de Frente
 		this.scene.pushMatrix();
-			this.scene.translate(0,-4.4,-3.5);
-			this.scene.scale(0.6,-0.6,0.6);
-			this.scene.rotate(-1* this.rotZ * Math.PI/2,0,0,1);
-			this.scene.rotate(-1*this.rotY * Math.PI/2,1,0,0);
-			this.jante.display();
-		this.scene.popMatrix();
-
-		// Jantes Esquerda da Roda Direita da Tras
-		this.scene.pushMatrix();
-			this.scene.translate(-5,-4.4,-3);
+			this.scene.translate(0,-4.4,6.8-2.5 - 8);
 			this.scene.scale(0.6,0.6,0.6);
-			this.scene.rotate(-1* this.rotZ * Math.PI/2,0,0,1);
-			//this.scene.rotate(this.rotY * Math.PI/2,1,0,0);
-			this.jante.display();
-		this.scene.popMatrix();
-
-		// Jantes Direita da Roda Direita da Tras
-		this.scene.pushMatrix();
-			this.scene.translate(-5,-4.4,-3.5);
-			this.scene.scale(0.6,-0.6,0.6);
-			this.scene.rotate(this.rotZ * Math.PI/2,0,0,1);
-			//this.scene.rotate(-1* this.rotY * Math.PI/2,1,0,0);
-			this.jante.display();
+			this.scene.rotate(this.rotY*Math.PI/2, 0,1, 0);
+			this.scene.rotate(-this.rotZ*Math.PI/2,0,0,1);
+			//this.scene.translate(5,0,-2.5);			
+			this.wheel.display();
 		this.scene.popMatrix();
 
 		this.scene.popMatrix();
 
 	};
 
-	update(currTime, w, s, d, a) {
-//		if(this.x>=0.4 && this.flag == false){
-// 			this.x -= 0.2;
-// 			this.y += 0.05;
-// 			this.lastUpdate = currTime;
-// 		}
-// 		else{ 
-// 			this.flag = true;
-// 			if(this.y>=0.45){
-// 				this.isFlyingVertical = true;
-// 				this.y -= 0.2;
-// 				this.rotZ -= (10);
-// 				this.rotX -= (10);
-				
-// 				}
-// 			else {
-// 				this.isFlyingVertical = false;
-// 			}
-// 		}
-
+	update(currTime, w, s, d, a, rotZ) {
+		//this.rotZ = rotZ;
+		this.wheel.update(currTime, w, s);
 		if (w == true)
 		{
-			this.x += 0.1;
-			this.rotZ += 0.1;	
+			this.x += Math.cos(this.rotY * degToRad) * (0.5);
+			this.z += Math.sin(this.rotY * degToRad) * 0.5;	
+			//this.rotZ += 1;	
 
 			if (d == true)
 			{
 				if (this.rotY < 0.75)
 					this.rotY += 0.1;
-				this.z+=0.1;
+			
 			}
 
 			if (a == true)
 			{	
 				if (this.rotY > -0.75)
 					this.rotY -= 0.1;
-				this.z-=0.1;
+			
 			}
 		}
 
 		if (s == true)
 		{
-			this.x -= 0.1;
+			this.x -= 0.5;
 			this.rotZ -= 0.1;
+			//this.rotZ -= 1;
 
 			if (d == true)
 			{
 				if (this.rotY < 0.75)
 					this.rotY += 0.1;
-				this.z+=0.1;
 			}
 
 			if (a == true)
 			{	
 				if (this.rotY > -0.75)
 					this.rotY -= 0.1;
-				this.z-=0.1;
 			}
 		}
  };
