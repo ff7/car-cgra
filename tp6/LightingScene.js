@@ -73,6 +73,7 @@ class LightingScene extends CGFscene
 		this.terrain = new MyTerrain(this, 8, this.altimetry);
 		this.crane = new MyCrane(this,0,0,0);
 		this.skyDome = new MySkyDome(this, 20, 20);
+		this.crane = new MyCrane(this);
 
 		// Scene elements end
 
@@ -84,8 +85,8 @@ class LightingScene extends CGFscene
 	};
 
 	initCameras()
-	{
-		this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(35, 35, 35), vec3.fromValues(0, 0, 0));
+	{//estava 35 35 35
+		this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(50, 50, 50), vec3.fromValues(0, 0, 0));
 	};
 
 	initLights()
@@ -176,7 +177,7 @@ class LightingScene extends CGFscene
 
 		// Terrain
 		this.pushMatrix();
-			this.terrain.display();
+			//this.terrain.display();
 		this.popMatrix();
 
 		// Car
@@ -194,8 +195,9 @@ class LightingScene extends CGFscene
 			//this.skyDome.display();
 		this.popMatrix();
 
+		//Crane
 		this.pushMatrix();
-			//this.crane.display();
+			this.crane.display();
 		this.popMatrix();
 	};
 

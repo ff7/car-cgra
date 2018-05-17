@@ -1,6 +1,6 @@
 var degToRad = Math.PI / 180.0;
 
-class MyWheel extends CGFobject
+class MyCraneCilinder extends CGFobject
 {
 	constructor(scene, x, y, z) 
 	{
@@ -20,11 +20,8 @@ class MyWheel extends CGFobject
 		//Para já serve enquanto não alteramos muito o carro.
 		this.materialDefault = new CGFappearance(this.scene);
 		
-		this.pneuAppearance = new CGFappearance(this.scene);
-		this.pneuAppearance.loadTexture("../resources/images/pneu.png");
-
-		this.janteAppearance = new CGFappearance(this.scene);
-		this.janteAppearance.loadTexture("../resources/images/jante.png");
+		this.bodyAppearance = new CGFappearance(this.scene);
+		this.bodyAppearance.loadTexture("../resources/images/darkRed.png");
 
 	};
 
@@ -33,21 +30,21 @@ class MyWheel extends CGFobject
 		
 		//Roda Esquerda de Tras
 		this.scene.pushMatrix();
- 			this.pneuAppearance.apply();
+ 			this.bodyAppearance.apply();
 			this.roda.display();
 		this.scene.popMatrix();
 
 		// Jantes Esquerda da Roda Esquerda da Tras
 		this.scene.pushMatrix();
 			this.scene.translate(0,0,1);
-			this.janteAppearance.apply();
+			this.bodyAppearance.apply();
 			this.jante.display();
 		this.scene.popMatrix();
 
 		// Jantes Direita da Roda Esquerda da Tras
 		this.scene.pushMatrix();
 			this.scene.rotate(Math.PI, 0,1,0);
-			this.janteAppearance.apply();
+			this.bodyAppearance.apply();
 			this.jante.display();
 		this.scene.popMatrix();
 

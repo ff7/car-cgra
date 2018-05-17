@@ -2,24 +2,66 @@ var degToRad = Math.PI / 180.0;
 
 class MyCrane extends CGFobject
 {
-	constructor(scene, x, y, z) 
+	constructor(scene) 
 	{
 		super(scene);
-		this.cylinder = new MyWheel(scene,0,0,0);
-		this.prism = new MyPrism(scene,4,1);
+		this.cylinder = new MyCraneCilinder(scene,0,0,0);
+
+		this.bodyAppearance = new CGFappearance(this.scene);
+		this.bodyAppearance.loadTexture("../resources/images/darkRed.png");
 	};
 
 	display() 
 	{
+		//Base
 		this.scene.pushMatrix();
-			this.prism.display();
+			this.scene.rotate(Math.PI/2,1,0,0);
+			this.scene.scale(2,2,0.8);
+			this.scene.translate(0,0,-1);
+			//this.bodyAppearance.apply();
 			this.cylinder.display();
-		// 
+		this.scene.popMatrix();
+
+		//Corpo 1
+		this.scene.pushMatrix();
+			this.scene.rotate(Math.PI/2,0,1,0);
+			this.scene.rotate(-Math.PI/3,1,0,0);
+			this.scene.scale(0.5,0.5,15);
+			this.scene.translate(0,0,0.02);
+			//this.bodyAppearance.apply();
+			this.cylinder.display();
+		this.scene.popMatrix();
+
+		//Roda
+		this.scene.pushMatrix();
+			this.scene.translate(8,14,-0.5);
+			this.cylinder.display();
+		this.scene.popMatrix();
+
+		//Corpo 2
+		this.scene.pushMatrix();
+			this.scene.rotate(Math.PI/2,0,1,0);
+			this.scene.scale(0.5,0.5,12);
+			this.scene.translate(0,28,0.65);
+			this.cylinder.display();
+		this.scene.popMatrix();
+
+		//Fio do íman
+		this.scene.pushMatrix();
+			this.scene.rotate(Math.PI/2,1,0,0);
+			this.scene.scale(0.1,0.1,5);
+			this.scene.translate(195,0,-2.8)
+			this.cylinder.display();
+		this.scene.popMatrix();
+
+		//Iman
+		this.scene.pushMatrix();
+			this.scene.rotate(Math.PI/2,1,0,0);
+			this.scene.scale(2,2,0.8);
+			this.scene.translate(9.75,0,-12);
+			this.cylinder.display();
 		this.scene.popMatrix();
 
 	};
 
-	update(currTime, w, s, d, a) {
-
- };
 };
