@@ -2,15 +2,19 @@ var degToRad = Math.PI / 180.0;
 
 class MyVehicle extends CGFobject
 {
-	constructor(scene, x, y, z) 
+	constructor(scene) 
 	{
 		super(scene);
 
-		this.x = x;
-		this.y = y;
-		this.z = z;
+		this.posX = 10;//7;
+		this.posY = 0;
+		this.posZ = 10;//3;
 
-		this.rotZ = 1;
+		this.speed = 0.5;
+		this.acceleration = 0;
+		
+		this.rotation = 0;
+		this.rotZ = 0;
 		this.rotY = 0;
 
 		this.corpo = new MyUnitCubeQuad(scene);
@@ -46,7 +50,7 @@ class MyVehicle extends CGFobject
 			//else if(this.scene.currVehicleAppearance == 'NoText')
 			//	this.materialDefault.apply();
 
-			this.tejadilho.display();
+		this.tejadilho.display();
 		this.scene.popMatrix();
 
 		// Corpo
@@ -120,46 +124,48 @@ class MyVehicle extends CGFobject
 
 	};
 
-	update(currTime, w, s, d, a, rotZ) {
-		//this.rotZ = rotZ;
-		this.wheel.update(currTime, w, s);
+	update(currTime, w, s, d, a) {
 		if (w == true)
 		{
-			this.x += Math.cos(this.rotY * degToRad) * (0.5);
-			this.z += Math.sin(this.rotY * degToRad) * 0.5;	
-			//this.rotZ += 1;	
+			this.posX += Math.cos(this.rotation * degToRad) * this.speed*currTime*1/50;
+			this.posZ -= Math.sin(this.rotation * degToRad) * this.speed*currTime*1/50;
+			this.rotZ += 0.3;	
 
 			if (d == true)
 			{
 				if (this.rotY < 0.75)
-					this.rotY += 0.1;
+					this.rotY += currTime * 3/1000;
+				this.rotation += this.speed * currTime * 1/10;
 			
 			}
 
 			if (a == true)
 			{	
 				if (this.rotY > -0.75)
-					this.rotY -= 0.1;
+					this.rotY -= currTime * 3/1000;
+				this.rotation -= this.speed * currTime * 1/10;
 			
 			}
 		}
 
 		if (s == true)
 		{
-			this.x -= 0.5;
-			this.rotZ -= 0.1;
-			//this.rotZ -= 1;
-
+			this.rotZ -= 0.3;
+			this.posX -= Math.cos(this.rotation * degToRad) * this.speed*currTime*1/50;
+			this.posZ += Math.sin(this.rotation * degToRad) * this.speed*currTime*1/50;
+			
 			if (d == true)
 			{
 				if (this.rotY < 0.75)
-					this.rotY += 0.1;
+					this.rotY += currTime * 3/1000;
+				this.rotation += this.speed * currTime * 1/10;
 			}
 
 			if (a == true)
 			{	
 				if (this.rotY > -0.75)
-					this.rotY -= 0.1;
+					this.rotY -= currTime * 3/1000;
+				this.rotation -= this.speed * currTime * 1/10;
 			}
 		}
  };

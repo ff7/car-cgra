@@ -54,7 +54,7 @@ class MyWheel extends CGFobject
 
 	};
 
-		update(currTime, w, s, d, a) {
+		update(currTime, w, s) {
 		if (w == true)
 		{
 			this.x += 0.1;
@@ -67,4 +67,6 @@ class MyWheel extends CGFobject
 			this.rotZ -= 0.1;
 		}
  };
+
+
 };
