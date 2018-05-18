@@ -10,7 +10,6 @@ class MyVehicle extends CGFobject
 		this.posY = 0;
 		this.posZ = 10;//3;
 
-		this.speed = 0.5;
 		this.acceleration = 0;
 		
 		this.rotation = 0;
@@ -127,15 +126,15 @@ class MyVehicle extends CGFobject
 	update(currTime, w, s, d, a) {
 		if (w == true)
 		{
-			this.posX += Math.cos(this.rotation * degToRad) * this.speed*currTime*1/50;
-			this.posZ -= Math.sin(this.rotation * degToRad) * this.speed*currTime*1/50;
+			this.posX += Math.cos(this.rotation * degToRad) * this.scene.speed*currTime*1/50;
+			this.posZ -= Math.sin(this.rotation * degToRad) * this.scene.speed*currTime*1/50;
 			this.rotZ += 0.3;	
 
 			if (d == true)
 			{
 				if (this.rotY < 0.3)
 					this.rotY += currTime * 3/1000;
-				this.rotation += this.speed * currTime * 1/10;
+				this.rotation += this.scene.speed * currTime * 1/10;
 			
 			}
 
@@ -143,7 +142,7 @@ class MyVehicle extends CGFobject
 			{	
 				if (this.rotY > -0.3)
 					this.rotY -= currTime * 3/1000;
-				this.rotation -= this.speed * currTime * 1/10;
+				this.rotation -= this.scene.speed * currTime * 1/10;
 			
 			}
 		}
@@ -151,21 +150,21 @@ class MyVehicle extends CGFobject
 		if (s == true)
 		{
 			this.rotZ -= 0.3;
-			this.posX -= Math.cos(this.rotation * degToRad) * this.speed*currTime*1/50;
-			this.posZ += Math.sin(this.rotation * degToRad) * this.speed*currTime*1/50;
+			this.posX -= Math.cos(this.rotation * degToRad) * this.scene.speed*currTime*1/50;
+			this.posZ += Math.sin(this.rotation * degToRad) * this.scene.speed*currTime*1/50;
 			
 			if (d == true)
 			{
 				if (this.rotY < 0.3)
 					this.rotY += currTime * 3/1000;
-				this.rotation += this.speed * currTime * 1/10;
+				this.rotation += this.scene.speed * currTime * 1/10;
 			}
 
 			if (a == true)
 			{	
 				if (this.rotY > -0.3)
 					this.rotY -= currTime * 3/1000;
-				this.rotation -= this.speed * currTime * 1/10;
+				this.rotation -= this.scene.speed * currTime * 1/10;
 			}
 		}
  };
