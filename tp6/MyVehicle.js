@@ -133,7 +133,7 @@ class MyVehicle extends CGFobject
 
 			if (d == true)
 			{
-				if (this.rotY < 0.75)
+				if (this.rotY < 0.3)
 					this.rotY += currTime * 3/1000;
 				this.rotation += this.speed * currTime * 1/10;
 			
@@ -141,7 +141,7 @@ class MyVehicle extends CGFobject
 
 			if (a == true)
 			{	
-				if (this.rotY > -0.75)
+				if (this.rotY > -0.3)
 					this.rotY -= currTime * 3/1000;
 				this.rotation -= this.speed * currTime * 1/10;
 			
@@ -156,14 +156,14 @@ class MyVehicle extends CGFobject
 			
 			if (d == true)
 			{
-				if (this.rotY < 0.75)
+				if (this.rotY < 0.3)
 					this.rotY += currTime * 3/1000;
 				this.rotation += this.speed * currTime * 1/10;
 			}
 
 			if (a == true)
 			{	
-				if (this.rotY > -0.75)
+				if (this.rotY > -0.3)
 					this.rotY -= currTime * 3/1000;
 				this.rotation -= this.speed * currTime * 1/10;
 			}
