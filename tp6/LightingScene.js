@@ -86,7 +86,7 @@ class LightingScene extends CGFscene
 
 	initCameras()
 	{//estava 35 35 35
-		this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(50, 50, 50), vec3.fromValues(0, 0, 0));
+		this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(5, 5, 5), vec3.fromValues(0, 0, 0));
 	};
 
 	initLights()
@@ -177,27 +177,27 @@ class LightingScene extends CGFscene
 
 		// Terrain
 		this.pushMatrix();
-			this.terrain.display();
+			//this.terrain.display();
 		this.popMatrix();
 
 		// Car
 		this.pushMatrix();
 			this.translate(this.car.posX,5.1,this.car.posZ);
 			this.rotate(this.car.rotation * degToRad, 0,1,0);
-			this.car.display();
+		//	this.car.display();
 		this.popMatrix();
 
 		//SkyDome
 		this.pushMatrix();
-			this.scale(100,100,100);
 			this.rotate(-Math.PI/2,1,0,0);
+			//this.scale(100,100,100);
 			//this.translate(0,0,5);
-			//this.skyDome.display();
+			this.skyDome.display();
 		this.popMatrix();
 
 		//Crane
 		this.pushMatrix();
-			this.crane.display();
+			//this.crane.display();
 		this.popMatrix();
 	};
 

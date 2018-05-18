@@ -11,6 +11,9 @@ class MySkyDome extends CGFobject
 		this.slices = slices;
 		this.stacks = stacks;
 
+		this.skyAppearance = new CGFappearance(this.scene);
+		this.skyAppearance.loadTexture("../resources/images/skydome.png");
+
 		this.initBuffers();
 	};
  
@@ -51,17 +54,16 @@ class MySkyDome extends CGFobject
 					verts+=1;
 
 					if(j == this.stacks-1){
-						this.indices.push(i%this.slices + j*this.slices);
-						this.indices.push((i+1)%this.slices + j*this.slices);
 						this.indices.push(this.stacks * this.slices);
-					}else{
-						this.indices.push(i % this.slices + j*this.slices);
-						this.indices.push((i+1)%this.slices + (j+1)*this.slices);
-						this.indices.push(i%this.slices + (j+1)*this.slices);
-
-						this.indices.push(i % this.slices + j*this.slices);
 						this.indices.push((i+1)%this.slices + j*this.slices);
-						this.indices.push((i+1)%this.slices + (j+1)*this.slices);	
+						this.indices.push(i%this.slices + j*this.slices);
+					}else{
+						this.indices.push((i+1)%this.slices + (j+1)*this.slices);
+						this.indices.push((i+1)%this.slices + j*this.slices);
+						this.indices.push(i % this.slices + j*this.slices);
+						this.indices.push(i%this.slices + (j+1)*this.slices);
+						this.indices.push((i+1)%this.slices + (j+1)*this.slices);
+						this.indices.push(i % this.slices + j*this.slices);	
 					}
 
 					ang_slices += ang1;
