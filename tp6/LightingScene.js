@@ -74,6 +74,7 @@ class LightingScene extends CGFscene
 		this.crane = new MyCrane(this,0,0,0);
 		this.skyDome = new MySkyDome(this, 20, 20);
 		this.crane = new MyCrane(this);
+		this.spot = new MyQuad(this,0,0,1,1);
 
 		// Scene elements end
 
@@ -199,6 +200,14 @@ class LightingScene extends CGFscene
 		//Crane
 		this.pushMatrix();
 			this.crane.display();
+		this.popMatrix();
+
+		//Spot no chao para o guindaste apanhar o carro
+		this.pushMatrix();
+			this.translate(19.5,0.1,-0.5);
+			this.scale(7,1,-4);
+			this.rotate(Math.PI/2,1,0,0);
+			this.spot.display();
 		this.popMatrix();
 	};
 
