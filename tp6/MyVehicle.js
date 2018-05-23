@@ -24,14 +24,13 @@ class MyVehicle extends CGFobject
 		//Para já serve enquanto não alteramos muito o carro.
 		this.materialDefault = new CGFappearance(this.scene);
 		
-		this.redAppearance = new CGFappearance(this.scene);
-		//this.redAppearance.setTextureWrap("CLAMP_TO_EDGE","CLAMP_TO_EDGE");
-		//this.redAppearance.setTextureWrap("REPEAT","REPEAT");
-		this.redAppearance.loadTexture("../resources/images/darkRed.png");
+		this.camoAppearance = new CGFappearance(this.scene);
+		//this.camoAppearance.setTextureWrap("CLAMP_TO_EDGE","CLAMP_TO_EDGE");
+		this.camoAppearance.loadTexture("../resources/images/camo.png");
 
-		this.terrainAppearance = new CGFappearance(this.scene);
-		this.terrainAppearance.setTextureWrap("REPEAT","REPEAT");
-		this.terrainAppearance.loadTexture("../resources/images/terrain.png");
+		this.flamesAppearance = new CGFappearance(this.scene);
+		//this.flamesAppearance.setTextureWrap("REPEAT","REPEAT");
+		this.flamesAppearance.loadTexture("../resources/images/flames.png");
 
 	};
 
@@ -57,9 +56,13 @@ class MyVehicle extends CGFobject
 			this.scene.scale(5,1,2);
 			this.scene.translate(-0.5,-4,-1);
 
-			if(this.scene.currVehicleAppearance == 'Red' || this.scene.currVehicleAppearance == 0)
-				this.redAppearance.apply();
-			else if(this.scene.currVehicleAppearance == 'NoText')
+			if(this.scene.currVehicleAppearance == 'Camo' || this.scene.currVehicleAppearance == 0)
+				this.camoAppearance.apply();
+
+			if(this.scene.currVehicleAppearance == 'Flames')
+				this.flamesAppearance.apply();
+
+			if(this.scene.currVehicleAppearance == 'NoText')
 				this.materialDefault.apply();
 
 			this.corpo.display();

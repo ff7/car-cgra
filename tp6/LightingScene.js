@@ -36,7 +36,7 @@ class LightingScene extends CGFscene
 		//GUI textures
 		this.vehicleAppearances = [];
 		this.currVehicleAppearance = 0;
-		this.vehicleAppearancesList = ['Red', 'NoText'];
+		this.vehicleAppearancesList = ['Camo', 'Flames','NoText'];
 
 		this.terrainAppearances = [];
 		this.currTerrainAppearance = 0;
@@ -78,8 +78,16 @@ class LightingScene extends CGFscene
 
 		// Scene elements end
 
-		// Materials
+		// Materials and appearances
 		this.materialDefault = new CGFappearance(this);
+
+		this.skyAppearance = new CGFappearance(this);
+		this.skyAppearance.setAmbient(1,1,1,1);
+		this.skyAppearance.setDiffuse(1,1,1,1);
+		this.skyAppearance.setSpecular(1,1,1,1);
+		this.skyAppearance.setShininess(0);
+		this.skyAppearance.loadTexture("../resources/images/skydome8.png");
+
 		// Materials end
 
 		this.setUpdatePeriod(1000/60);
@@ -87,42 +95,45 @@ class LightingScene extends CGFscene
 
 	initCameras()
 	{//estava 35 35 35
-		//this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(5, 5, 5), vec3.fromValues(0, 0, 0));
-		this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(50, 50, 50), vec3.fromValues(0, 0, 0));
+		//this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(100, 100, 100), vec3.fromValues(0, 0, 0));
+		this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(90, 90, 90), vec3.fromValues(0, 0, 0));
 	};
 
 	initLights()
 	{
-		this.setGlobalAmbientLight(0.3, 0.3, 0.3, 1.0);
+		this.setGlobalAmbientLight(0.4, 0.4, 0.4, 1.0);
 
 		this.lights[0].setPosition(4, 6, 1, 1);
+		//this.lights[0].setVisible(true);
+
 		this.lights[1].setPosition(10.5, 6.0, 1.0, 1.0);
+		//this.lights[1].setPosition(true);
 
 		//Farol esquerdo
 		this.lights[2].setPosition(7.8, 1.5, 4.9);
-		this.lights[2].setVisible(true);
+		//this.lights[2].setVisible(true);
 
 		//Farol direito
 		this.lights[3].setPosition(7.8, 1.5, 6);
-		this.lights[3].setVisible(true);
+		//this.lights[3].setVisible(true);
 
 		this.lights[0].setAmbient(0, 0, 0, 1);
 		this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
-		this.lights[0].setSpecular(1.0, 1.0, 0, 1);
+		this.lights[0].enable();
 
 		this.lights[1].setAmbient(0, 0, 0, 1);
 		this.lights[1].setDiffuse(1.0, 1.0, 1.0, 1.0);
 		this.lights[1].enable();
 
 		//Farol esquerdo
-	  	this.lights[2].setAmbient(0.2, 0.2, 0.2, 1.0);
-		this.lights[2].setDiffuse(0.8, 0.8, 0.8, 1.0);
-		this.lights[2].setSpecular(0.5, 0.5, 0.5, 1);
+	  	this.lights[2].setAmbient(0.3, 0.3, 0.3, 1);
+		this.lights[2].setDiffuse(1, 1, 1, 1);
+		this.lights[2].enable();
 
 		//Farol direito
 	  	this.lights[3].setAmbient(0.2, 0.2, 0.2, 1.0);
 		this.lights[3].setDiffuse(0.8, 0.8, 0.8, 1.0);
-		this.lights[3].setSpecular(0.5, 0.5, 0.5, 1);
+		this.lights[3].enable();
 	};
 
 	updateLights()
@@ -130,23 +141,19 @@ class LightingScene extends CGFscene
 		for (var i = 0; i < this.lights.length; i++)
 			this.lights[i].update();
 
-		if(this.dayTime == true){
+		if(this.dayTime == true)
 			this.lights[0].enable();
-		}else{
-			this.lights[0].disable();
-		}
+		else this.lights[0].disable();
+	
 
-		if(this.light_1 == true){
+		if(this.light_1 == true)
 			this.lights[2].enable();
-		}else{
-			this.lights[2].disable();
-		}
+		else this.lights[2].disable();
+		
 
-		if(this.light_2 == true){
+		if(this.light_2 == true)
 			this.lights[3].enable();
-		}else{
-			this.lights[3].disable();
-		}
+		else this.lights[3].disable();
 	}
 
 
@@ -179,6 +186,7 @@ class LightingScene extends CGFscene
 
 		// Terrain
 		this.pushMatrix();
+			this.scale(2,2,2);
 			this.terrain.display();
 		this.popMatrix();
 
@@ -192,9 +200,18 @@ class LightingScene extends CGFscene
 		//SkyDome
 		this.pushMatrix();
 			this.rotate(-Math.PI/2,1,0,0);
-			//this.scale(100,100,100);
-			//this.translate(0,0,5);
-			//this.skyDome.display();
+			this.translate(0,0,-30);
+			this.scale(100,100,100);
+			this.skyAppearance.apply();
+			this.skyDome.display();
+		this.popMatrix();
+
+		this.pushMatrix();
+			this.rotate(Math.PI/2,1,0,0);
+			this.translate(0,0,-30);
+			this.scale(100,100,100);
+			this.skyAppearance.apply();
+			this.skyDome.display();
 		this.popMatrix();
 
 		//Crane

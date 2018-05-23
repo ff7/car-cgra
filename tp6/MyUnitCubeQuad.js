@@ -8,7 +8,7 @@ class MyUnitCubeQuad extends CGFobject
 	{
 		super(scene);
 
-		this.quad = new MyQuad(this.scene, -0.5, 1.5, -1.0, 1.0);
+		this.quad = new MyQuad(this.scene);
 	};
 
 	display() 
@@ -21,7 +21,7 @@ class MyUnitCubeQuad extends CGFobject
 
 		// back face
 		this.scene.pushMatrix();
-		this.scene.rotate(180 * degToRad, 1, 0, 0);
+		this.scene.rotate(180 * degToRad, 0, 1, 0);
 		this.scene.translate(0, 0, 0.5);
 		this.quad.display();
 		this.scene.popMatrix();

@@ -19,8 +19,7 @@ class MyLamp extends CGFobject
 		this.vertices = [];
 		this.indices = [];
 		this.normals = [];
-		let verts = 0;
-
+		//this.texCoords = [];
 		var i,j;
 
 		var ang1 = 2*Math.PI/this.slices;
@@ -29,9 +28,6 @@ class MyLamp extends CGFobject
 		let ang_stacks = 0; 
 		var x1,y1,z1;
 		var nX, nY, nZ;
-
-		var x2, y2, z2;
-		var nX2, nY2, nZ2;
 
 		for(j = 0; j < this.stacks ; j++){
 
@@ -47,8 +43,7 @@ class MyLamp extends CGFobject
 
 					this.vertices.push(x1,y1,z1);
 					this.normals.push(nX,nY,nZ);
-
-					verts+=1;
+					//this.texCoords.push(i * 1/this.slices, j * 1/this.stacks);
 
 					if(j == this.stacks-1){
 						this.indices.push(i%this.slices + j*this.slices);
@@ -72,9 +67,6 @@ class MyLamp extends CGFobject
 
 		this.vertices.push(0,0,1);
 		this.normals.push(0,0,1);
-
-		console.log(this.vertices);
-		console.log(this.indices);
 
 		this.primitiveType = this.scene.gl.TRIANGLES;
 		this.initGLBuffers();
