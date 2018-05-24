@@ -23,14 +23,6 @@ class MyVehicle extends CGFobject
 
 		//Para já serve enquanto não alteramos muito o carro.
 		this.materialDefault = new CGFappearance(this.scene);
-		
-		//this.camoAppearance = new CGFappearance(this.scene);
-		//this.camoAppearance.setTextureWrap("CLAMP_TO_EDGE","CLAMP_TO_EDGE");
-		//this.camoAppearance.loadTexture("../resources/images/camo.png");
-
-		//this.flamesAppearance = new CGFappearance(this.scene);
-		//this.flamesAppearance.setTextureWrap("REPEAT","REPEAT");
-		//this.flamesAppearance.loadTexture("../resources/images/flames.png");
 
 		this.lightAppearance = new CGFappearance(this.scene);
 		this.lightAppearance.loadTexture("../resources/images/light.png");
@@ -122,17 +114,17 @@ class MyVehicle extends CGFobject
 			this.posZ -= Math.sin(this.rotation * degToRad) * this.scene.speed*currTime*1/50;
 			this.rotZ += 0.3;	
 
-			if (d == true)
+			if (a == true)
 			{
-				if (this.rotY < 0.3)
+				if (this.rotY < 0.2)
 					this.rotY += currTime * 3/1000;
 				this.rotation += this.scene.speed * currTime * 1/10;
 			
 			}
 
-			if (a == true)
+			if (d == true)
 			{	
-				if (this.rotY > -0.3)
+				if (this.rotY > -0.2)
 					this.rotY -= currTime * 3/1000;
 				this.rotation -= this.scene.speed * currTime * 1/10;
 			
@@ -145,18 +137,18 @@ class MyVehicle extends CGFobject
 			this.posX -= Math.cos(this.rotation * degToRad) * this.scene.speed*currTime*1/50;
 			this.posZ += Math.sin(this.rotation * degToRad) * this.scene.speed*currTime*1/50;
 			
-			if (d == true)
+			if (a == true)
 			{
-				if (this.rotY < 0.3)
+				if (this.rotY < 0.2)
 					this.rotY += currTime * 3/1000;
-				this.rotation += this.scene.speed * currTime * 1/10;
+				this.rotation -= this.scene.speed * currTime * 1/10;
 			}
 
-			if (a == true)
+			if (d == true)
 			{	
-				if (this.rotY > -0.3)
+				if (this.rotY > -0.2)
 					this.rotY -= currTime * 3/1000;
-				this.rotation -= this.scene.speed * currTime * 1/10;
+				this.rotation += this.scene.speed * currTime * 1/10;
 			}
 		}
  };

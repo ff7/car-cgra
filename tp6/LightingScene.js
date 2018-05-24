@@ -1,5 +1,7 @@
 var degToRad = Math.PI / 180.0;
 
+var frameRate = 120;
+
 var BOARD_WIDTH = 6.0;
 var BOARD_HEIGHT = 4.0;
 
@@ -52,17 +54,17 @@ class LightingScene extends CGFscene
 		this.light_2=true;
 		this.light_3=true;
 
-		this.speed=3;
+		this.speed=1;
 
-		this.altimetry= [[ 50.0 , 50.0 , 5.0, 7.0, 5.5, 2.4, 2.3, 1.3, 1.0],
-						 [ 50.0 , 50.0 , 5.0, 7.0, 10.5, 6.4, 4.3, 1.3, 1.0],
-						 [ 11.0 , 9.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
-						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 22.0, 20.0, 0.0],
-						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 2.4, 18.0, 16.0, 0.0],
-						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 2.4, 18.0, 19.0, 0.0],
-						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
-						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 6.0, 3.0],
-						 [ 12.0 , 20.0 , 16.0, 16.0, 5.5, 2.4, 2.3, 1.3, 10.0]
+		this.altimetry= [[ 50.0 , 50.0 , 5.0, 7.0, 5.5, 2.4, 2.3, 1.3,0],
+						 [ 50.0 , 50.0 , 5.0, 7.0, 10.5, 6.4, 4.3, 1.3,0],
+						 [ 11.0 , 9.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,0],
+						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 22.0, 20.0,0],
+						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 2.4, 18.0, 16.0,0],
+						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 2.4, 18.0, 19.0,0],
+						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,0],
+						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 6.0,0],
+						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 6.0,0]
 						];
 
 
@@ -71,27 +73,16 @@ class LightingScene extends CGFscene
 		// Scene elements
 		this.floor = new MyQuad(this, 0, 10, 0, 12);
 		this.car = new MyVehicle(this);
-		this.terrain = new MyTerrain(this, 8, this.altimetry);
+		this.terrain = new MyTerrain(this, this.altimetry.length-1, this.altimetry);
 		this.crane = new MyCrane(this,0,0,0);
 		this.skyDome = new MySkyDome(this, 20, 20);
 		this.crane = new MyCrane(this);
-		this.spot = new MyQuad(this,0,10,0,12);
+		this.spot = new MyQuad(this);
 		this.keepMoving = false;
+		// Scene elements end
 
 		// Flags
 		this.isCarPlaced = false;
-
-		// Textures
-		this.arrival = new CGFappearance(this);
-		this.arrival.setTextureWrap("REPEAT","REPEAT");
-		this.arrival.loadTexture("../resources/images/arrival.png");
-		
-
-		this.departure = new CGFappearance(this);
-		this.departure.setTextureWrap("REPEAT","REPEAT");
-		this.departure.loadTexture("../resources/images/departure.png");
-
-		// Scene elements end
 
 		// Materials and appearances
 		this.materialDefault = new CGFappearance(this);
@@ -104,18 +95,26 @@ class LightingScene extends CGFscene
 		this.skyAppearance.loadTexture("../resources/images/skydome8.png");
 
 		this.spotDepart = new CGFappearance(this);
+		this.spotDepart.setAmbient(1,1,1,1);
+		this.spotDepart.setDiffuse(1,1,1,1);
+		this.spotDepart.setSpecular(1,1,1,1);
+		this.spotDepart.setShininess(0);
 		this.spotDepart.loadTexture("../resources/images/departure.png");
 
 		this.spotArrival = new CGFappearance(this);
-		this.spotArrival.loadTexture("../resources/images/arrival.png");5
+		this.spotArrival.setAmbient(1,1,1,1);
+		this.spotArrival.setDiffuse(1,1,1,1);
+		this.spotArrival.setSpecular(1,1,1,1);
+		this.spotArrival.setShininess(0);
+		this.spotArrival.loadTexture("../resources/images/arrival.png");
 
 		// Materials end
 
-		this.setUpdatePeriod(1000/60);
+		this.setUpdatePeriod(1000/frameRate);
 	};
 
 	initCameras()
-	{//estava 35 35 35
+	{
 		this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(40, 40, 40), vec3.fromValues(0, 0, 0));
 	};
 
@@ -165,7 +164,6 @@ class LightingScene extends CGFscene
 			this.lights[0].enable();
 		else this.lights[0].disable();
 	
-
 		if(this.light_1 == true)
 			this.lights[1].enable();
 		else this.lights[1].disable();
@@ -220,10 +218,6 @@ class LightingScene extends CGFscene
 		this.rotate(this.car.rotation * degToRad, 0,1,0);
 		if (this.crane.drawCar == true)
 			this.car.display();
-// 			else {
-// 				this.car.posX = -2;
-// 				this.car.posZ = 3;
-// 			}
 		this.popMatrix();
 
 		//SkyDome
@@ -253,16 +247,17 @@ class LightingScene extends CGFscene
 			this.translate(19.5,0.1,-0.5);
 			this.scale(7,1,-4);
 			this.rotate(Math.PI/2,1,0,0);
-			this.departure.apply();
 			this.spotDepart.apply();
 			this.spot.display();
 		this.popMatrix();
 
 		//Spot no chao para o guindaste deixar o carro
 		this.pushMatrix();
-			this.translate(-3,0.1,15);
-			this.scale(-4,1,7);
+			this.translate(-3,0.1,17);
+			this.scale(7,1,-4);
 			this.rotate(Math.PI/2,1,0,0);
+			this.rotate(Math.PI/2,0,0,1);
+			this.scale(2,0.6,1);
 			this.spotArrival.apply();
 			this.spot.display();
 		this.popMatrix();
@@ -275,6 +270,13 @@ class LightingScene extends CGFscene
 			this.car.posZ = z;
 			this.car.rotation = 270;
 		}
+	};
+
+	resetFlags()
+	{
+		this.keepMoving = false;
+		this.isCarPlaced = false;
+		this.crane.resetFlags();
 	};
 
 	update(currTime) {
@@ -325,12 +327,15 @@ class LightingScene extends CGFscene
 		else if(this.isCarPlaced == true && this.crane.drawCar == true) // Quando o carro ja esta preso ao guindaste
 		{
 			this.crane.update(this.deltaTime);
+				if(this.keepMoving == true){
+					this.resetFlags();
+				}
 		}
 		else if(this.crane.drawCar == false) // Quando o carro ja esta preso ao guindaste
 		{
 			this.crane.update(this.deltaTime);
 			this.keepMoving = true;
-			this.reDrawCar(-5,17.5);
+			this.reDrawCar(-5,19.5);
 		}
 	};
 

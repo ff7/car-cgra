@@ -34,7 +34,6 @@ class MySkyDome extends CGFobject
 					let z = Math.sin(ang2*j);
 
 					this.vertices.push(x,y,z);
-					//this.normals.push(x,y,z);
 					this.normals.push(Math.cos(ang1*i)*Math.sqrt(1 - Math.pow(j/this.stacks,2)), Math.sin(ang1*i)*Math.sqrt(1 - Math.pow(j/this.stacks,2)), j/this.stacks);
 					this.texCoords.push(i * 1/this.slices, j * 1/this.stacks);
 					

@@ -96,6 +96,17 @@ class MyCrane extends CGFobject
 
  	};
 
+ 	resetFlags(){
+ 		this.down = true;
+		this.up = false;
+		this.left = false;
+		this.right = false;
+
+		this.drop = true;
+		this.isMoving = true;
+		this.drawCar = true;
+ 	};
+
 	update(move)
 	{
 // 		if (move == true)
@@ -135,7 +146,7 @@ class MyCrane extends CGFobject
 		else if (this.left == true)
 		{
 			this.rotBase += 0.01;
-			if (this.rotBase > 2.7)
+			if (this.rotBase > 2.9)
 			{
 				this.left = false;
 				this.down = true;
