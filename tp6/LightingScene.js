@@ -74,7 +74,21 @@ class LightingScene extends CGFscene
 		this.crane = new MyCrane(this,0,0,0);
 		this.skyDome = new MySkyDome(this, 20, 20);
 		this.crane = new MyCrane(this);
-		this.spot = new MyQuad(this,0,0,1,1);
+		this.spot = new MyQuad(this,0,10,0,12);
+		this.keepMoving = false;
+
+		// Flags
+		this.isCarPlaced = false;
+
+		// Textures
+		this.arrival = new CGFappearance(this);
+		this.arrival.setTextureWrap("REPEAT","REPEAT");
+		this.arrival.loadTexture("../resources/images/arrival.png");
+		
+
+		this.departure = new CGFappearance(this);
+		this.departure.setTextureWrap("REPEAT","REPEAT");
+		this.departure.loadTexture("../resources/images/departure.png");
 
 		// Scene elements end
 
@@ -192,9 +206,14 @@ class LightingScene extends CGFscene
 
 		// Car
 		this.pushMatrix();
-			this.translate(this.car.posX,5.1,this.car.posZ);
-			this.rotate(this.car.rotation * degToRad, 0,1,0);
+		this.translate(this.car.posX,5.1,this.car.posZ);
+		this.rotate(this.car.rotation * degToRad, 0,1,0);
+		if (this.crane.drawCar == true)
 			this.car.display();
+// 			else {
+// 				this.car.posX = -2;
+// 				this.car.posZ = 3;
+// 			}
 		this.popMatrix();
 
 		//SkyDome
@@ -224,11 +243,30 @@ class LightingScene extends CGFscene
 			this.translate(19.5,0.1,-0.5);
 			this.scale(7,1,-4);
 			this.rotate(Math.PI/2,1,0,0);
+			this.departure.apply();
+			this.spot.display();
+		this.popMatrix();
+
+		//Spot no chao para o guindaste deixar o carro
+		this.pushMatrix();
+			this.translate(-3,0.1,15);
+			this.scale(-4,1,7);
+			this.rotate(Math.PI/2,1,0,0);
 			this.spot.display();
 		this.popMatrix();
 	};
 
+	reDrawCar(x, z)
+	{
+		if(this.car.posX > 22 && this.car.posX < 24 && this.car.posZ > 1 && this.car.posZ < 2){
+			this.car.posX = x;
+			this.car.posZ = z;
+			this.car.rotation = 270;
+		}
+	};
+
 	update(currTime) {
+
 		let w = false, s = false, d = false, a = false;
 
 		if (this.gui.isKeyPressed("KeyW"))
@@ -253,13 +291,35 @@ class LightingScene extends CGFscene
 		else
 			a = false;
 
+
 		this.lastTime = this.lastTime || 0;
 		this.deltaTime = currTime - this.lastTime;
 		this.lastTime = currTime;
-		this.car.update(this.deltaTime, w, s, d, a);
-		this.crane.update(this.deltaTime);
-		//this.checkKeys();
 
+		if(this.car.posX > 22 && this.car.posX < 24 && this.car.posZ > 1 && this.car.posZ < 2)
+			this.isCarPlaced = true;
+		else
+			this.isCarPlaced = false;
+		
+
+		if (this.isCarPlaced == false && this.crane.drawCar == true) // Mexe o carro se nao estiver no spot
+		{
+			this.car.update(this.deltaTime, w, s, d, a);
+			if (this.keepMoving == true) // Quando o carro ja esta no chao mas o guindaste ainda esta a mexer
+			{
+				this.crane.update(this.deltaTime);
+			}
+		}
+		else if(this.isCarPlaced == true && this.crane.drawCar == true) // Quando o carro ja esta preso ao guindaste
+		{
+			this.crane.update(this.deltaTime);
+		}
+		else if(this.crane.drawCar == false) // Quando o carro ja esta preso ao guindaste
+		{
+			this.crane.update(this.deltaTime);
+			this.keepMoving = true;
+			this.reDrawCar(-5,17.5);
+		}
 	};
 
 	doSomething()
