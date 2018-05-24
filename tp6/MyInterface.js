@@ -49,9 +49,10 @@ class MyInterface extends CGFinterface {
 		groupLights.open();
 
 		//Options for all the lights in the scene
-		groupLights.add(this.scene, 'dayTime');
+		groupLights.add(this.scene, 'light_0');
 		groupLights.add(this.scene, 'light_1');
 		groupLights.add(this.scene, 'light_2');
+		groupLights.add(this.scene, 'light_3');
 
 
 		//GRUPO DE TEXTURAS

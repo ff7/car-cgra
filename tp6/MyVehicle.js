@@ -32,6 +32,9 @@ class MyVehicle extends CGFobject
 		//this.flamesAppearance.setTextureWrap("REPEAT","REPEAT");
 		this.flamesAppearance.loadTexture("../resources/images/flames.png");
 
+		this.lightAppearance = new CGFappearance(this.scene);
+		this.lightAppearance.loadTexture("../resources/images/light.png");
+
 	};
 
 	display() 
@@ -72,18 +75,20 @@ class MyVehicle extends CGFobject
 		//farol esquerdo
 		this.scene.pushMatrix();
 			this.scene.rotate(-90*degToRad,1,0,0);
-			this.scene.rotate(-90*degToRad,0,1,0);
+			this.scene.rotate(90*degToRad,0,1,0);
 			this.scene.scale(0.3,0.3,0.3)
-			this.scene.translate(-12,5,-1);
+			this.scene.translate(13,5.4,0);
+			this.lightAppearance.apply();
 			this.farol.display();
 		this.scene.popMatrix();
 
 		//farol direito
 		this.scene.pushMatrix();
 			this.scene.rotate(-90*degToRad,1,0,0);
-			this.scene.rotate(-90*degToRad,0,1,0);
+			this.scene.rotate(90*degToRad,0,1,0);
 			this.scene.scale(0.3,0.3,0.3)
-			this.scene.translate(-12,8.5,-1);
+			this.scene.translate(13,8.5,0);
+			this.lightAppearance.apply();
 			this.farol.display();
 		this.scene.popMatrix();
 
@@ -97,7 +102,7 @@ class MyVehicle extends CGFobject
 
 		// Roda Direita de Tras
 		this.scene.pushMatrix();
-			this.scene.translate(-5,-4.4,6.8-2.5 - 8);
+			this.scene.translate(-5,-4.4,6.8-2.5 - 7.8);
 			this.scene.scale(0.6,0.6,0.6);
 			this.scene.rotate(-this.rotZ*Math.PI/2,0,0,1);
 			this.wheel.display();
@@ -114,7 +119,7 @@ class MyVehicle extends CGFobject
 
 		// Roda Direita de Frente
 		this.scene.pushMatrix();
-			this.scene.translate(0,-4.4,6.8-2.5 - 8);
+			this.scene.translate(0,-4.4,6.8-2.5 - 7.8);
 			this.scene.scale(0.6,0.6,0.6);
 			this.scene.rotate(this.rotY*Math.PI/2, 0,1, 0);
 			this.scene.rotate(-this.rotZ*Math.PI/2,0,0,1);
