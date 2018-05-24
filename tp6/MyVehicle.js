@@ -24,13 +24,13 @@ class MyVehicle extends CGFobject
 		//Para já serve enquanto não alteramos muito o carro.
 		this.materialDefault = new CGFappearance(this.scene);
 		
-		this.camoAppearance = new CGFappearance(this.scene);
+		//this.camoAppearance = new CGFappearance(this.scene);
 		//this.camoAppearance.setTextureWrap("CLAMP_TO_EDGE","CLAMP_TO_EDGE");
-		this.camoAppearance.loadTexture("../resources/images/camo.png");
+		//this.camoAppearance.loadTexture("../resources/images/camo.png");
 
-		this.flamesAppearance = new CGFappearance(this.scene);
+		//this.flamesAppearance = new CGFappearance(this.scene);
 		//this.flamesAppearance.setTextureWrap("REPEAT","REPEAT");
-		this.flamesAppearance.loadTexture("../resources/images/flames.png");
+		//this.flamesAppearance.loadTexture("../resources/images/flames.png");
 
 		this.lightAppearance = new CGFappearance(this.scene);
 		this.lightAppearance.loadTexture("../resources/images/light.png");
@@ -45,29 +45,13 @@ class MyVehicle extends CGFobject
 		this.scene.pushMatrix();
 			this.scene.scale(2,1,2);
 			this.scene.translate(-1.50,-3,-1.5);
-
-			//if(this.scene.currVehicleAppearance == 'Red' || this.scene.currVehicleAppearance == 0)
-			//	this.redAppearance.apply();
-			//else if(this.scene.currVehicleAppearance == 'NoText')
-			//	this.materialDefault.apply();
-
-		this.tejadilho.display();
+			this.tejadilho.display();
 		this.scene.popMatrix();
 
 		// Corpo
 		this.scene.pushMatrix();
 			this.scene.scale(5,1,2);
 			this.scene.translate(-0.5,-4,-1);
-
-			if(this.scene.currVehicleAppearance == 'Camo' || this.scene.currVehicleAppearance == 0)
-				this.camoAppearance.apply();
-
-			if(this.scene.currVehicleAppearance == 'Flames')
-				this.flamesAppearance.apply();
-
-			if(this.scene.currVehicleAppearance == 'NoText')
-				this.materialDefault.apply();
-
 			this.corpo.display();
 		this.scene.popMatrix();
 		

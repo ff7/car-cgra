@@ -36,7 +36,7 @@ class LightingScene extends CGFscene
 		//GUI textures
 		this.vehicleAppearances = [];
 		this.currVehicleAppearance = 0;
-		this.vehicleAppearancesList = ['Camo', 'Flames','NoText'];
+		this.vehicleAppearancesList = ['Camo', 'Flames','Rusty', 'Murica'];
 
 		this.terrainAppearances = [];
 		this.currTerrainAppearance = 0;
@@ -110,8 +110,7 @@ class LightingScene extends CGFscene
 
 	initCameras()
 	{//estava 35 35 35
-		//this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(100, 100, 100), vec3.fromValues(0, 0, 0));
-		this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(90, 90, 90), vec3.fromValues(0, 0, 0));
+		this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(40, 40, 40), vec3.fromValues(0, 0, 0));
 	};
 
 	initLights()
