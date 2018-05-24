@@ -103,6 +103,12 @@ class LightingScene extends CGFscene
 		this.skyAppearance.setShininess(0);
 		this.skyAppearance.loadTexture("../resources/images/skydome8.png");
 
+		this.spotDepart = new CGFappearance(this);
+		this.spotDepart.loadTexture("../resources/images/departure.png");
+
+		this.spotArrival = new CGFappearance(this);
+		this.spotArrival.loadTexture("../resources/images/arrival.png");5
+
 		// Materials end
 
 		this.setUpdatePeriod(1000/60);
@@ -248,6 +254,7 @@ class LightingScene extends CGFscene
 			this.scale(7,1,-4);
 			this.rotate(Math.PI/2,1,0,0);
 			this.departure.apply();
+			this.spotDepart.apply();
 			this.spot.display();
 		this.popMatrix();
 
@@ -256,6 +263,7 @@ class LightingScene extends CGFscene
 			this.translate(-3,0.1,15);
 			this.scale(-4,1,7);
 			this.rotate(Math.PI/2,1,0,0);
+			this.spotArrival.apply();
 			this.spot.display();
 		this.popMatrix();
 	};
