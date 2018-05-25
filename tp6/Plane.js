@@ -47,7 +47,6 @@ class Plane extends CGFobject{
 		var yCoord = 0.5;
 		var t = this.minT;
 		var s = this.minS;
-		var z;
 		var increaseS = (this.maxS - this.minS)/this.nrDivs;
 		var increaseT = (this.maxT - this.minT)/this.nrDivs;
 
@@ -57,8 +56,8 @@ class Plane extends CGFobject{
 			for (var i = 0; i <= this.nrDivs; i++) 
 			{
 				
-				z = this.altimetry[i][j];
-				this.vertices.push(xCoord, yCoord, z);
+				let z = this.altimetry[i][j];
+				this.vertices.push(xCoord, yCoord, z/50);
 				
 				this.texCoords.push(s + increaseS*i,t + increaseT*j);
 				this.normals.push(0,0,1);

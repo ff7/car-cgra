@@ -56,15 +56,15 @@ class LightingScene extends CGFscene
 
 		this.speed=1;
 
-		this.altimetry= [[ 50.0 , 50.0 , 5.0, 7.0, 5.5, 2.4, 2.3, 1.3,0],
-						 [ 50.0 , 50.0 , 5.0, 7.0, 10.5, 6.4, 4.3, 1.3,0],
-						 [ 11.0 , 9.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,0],
-						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 22.0, 20.0,0],
-						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 18.0, 16.0,0],
-						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 18.0, 19.0,0],
-						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,0],
-						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 6.0,0],
-						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 6.0,0]
+		this.altimetry= [[ 20.0 , 20.0 , 10.0, 10.0, 10.0, 5.0, 0.0, 0.0,0],
+						 [ 20.0 , 20.0 , 10.0, 0.0, 0.0, 0.0, 0.0, 0.0,0],
+						 [ 10.0 , 20.0 , 10.0, 0.0, 5.0, 0.0, 0.0, 0.0,0],
+						 [ 5.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,0],
+						 [ 5.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,0],
+						 [ 2.0 , 15.0 , 15.0, 0.0, 0.0, 0.0, 0.0, 0.0,0],
+						 [ 2.50 , 15.0 , 15.0, 0.0, 0.0, 0.0, 0.0, 0.12,0],
+						 [ 1.25 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,0],
+						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,0]
 						];
 
 
@@ -116,7 +116,7 @@ class LightingScene extends CGFscene
 
 	initCameras()
 	{
-		this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(60, 60, 60), vec3.fromValues(0, 0, 0));
+		this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(80, 80, 80), vec3.fromValues(0, 0, 0));
 	};
 
 	initLights()
@@ -209,8 +209,6 @@ class LightingScene extends CGFscene
 
 		// Terrain
 		this.pushMatrix();
-			this.scale(3,3,3);
-			this.translate(-6,0,-5);
 			this.terrain.display();
 		this.popMatrix();
 
@@ -225,14 +223,14 @@ class LightingScene extends CGFscene
 		//SkyDome
 		this.pushMatrix();
 			this.rotate(-Math.PI/2,1,0,0);
-			this.scale(100,100,100);
+			this.scale(50,50,50);
 			this.skyAppearance.apply();
 			this.skyDome.display();
 		this.popMatrix();
 
 		this.pushMatrix();
 			this.rotate(Math.PI/2,1,0,0);
-			this.scale(100,100,100);
+			this.scale(50,50,50);
 			this.skyAppearance.apply();
 			this.skyDome.display();
 		this.popMatrix();
