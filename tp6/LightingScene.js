@@ -1,6 +1,6 @@
 var degToRad = Math.PI / 180.0;
 
-var frameRate = 120;
+var frameRate = 60;
 
 var BOARD_WIDTH = 6.0;
 var BOARD_HEIGHT = 4.0;
@@ -33,8 +33,6 @@ class LightingScene extends CGFscene
 
 		this.axis = new CGFaxis(this);
 		
-		//GUI
-
 		//GUI textures
 		this.vehicleAppearances = [];
 		this.currVehicleAppearance = 0;
@@ -57,28 +55,24 @@ class LightingScene extends CGFscene
 		this.speed=1;
 
 		this.altimetry= [[ 20.0 , 20.0 , 10.0, 10.0, 10.0, 5.0, 0.0, 0.0,0],
-						 [ 20.0 , 20.0 , 10.0, 0.0, 0.0, 0.0, 0.0, 0.0,0],
-						 [ 10.0 , 20.0 , 10.0, 0.0, 5.0, 0.0, 0.0, 0.0,0],
+						 [ 20.0 , 5.0 , 5.0, 0.0, 0.0, 0.0, 0.0, 0.0,0],
+						 [ 10.0 , 5.0 , 5.0, 0.0, 5.0, 0.0, 0.0, 0.0,0],
 						 [ 5.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,0],
 						 [ 5.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,0],
-						 [ 2.0 , 15.0 , 15.0, 0.0, 0.0, 0.0, 0.0, 0.0,0],
-						 [ 2.50 , 15.0 , 15.0, 0.0, 0.0, 0.0, 0.0, 0.12,0],
+						 [ 2.0 , 5.0 , 5.0, 0.0, 0.0, 0.0, 0.0, 0.0,0],
+						 [ 2.50 , 5.0 , 5.0, 0.0, 0.0, 0.0, 0.0, 0.12,0],
 						 [ 1.25 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,0],
 						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,0]
 						];
 
 
-		//END GUI
-
 		// Scene elements
-		this.floor = new MyQuad(this, 0, 10, 0, 12);
 		this.car = new MyVehicle(this);
 		this.terrain = new MyTerrain(this, this.altimetry.length-1, this.altimetry);
 		this.crane = new MyCrane(this,0,0,0);
 		this.skyDome = new MySkyDome(this, 20, 20);
 		this.crane = new MyCrane(this);
 		this.spot = new MyQuad(this);
-
 		// Scene elements end
 
 		// Flags
@@ -108,7 +102,6 @@ class LightingScene extends CGFscene
 		this.spotArrival.setSpecular(1,1,1,1);
 		this.spotArrival.setShininess(0);
 		this.spotArrival.loadTexture("../resources/images/arrival.png");
-
 		// Materials end
 
 		this.setUpdatePeriod(1000/frameRate);
@@ -116,7 +109,7 @@ class LightingScene extends CGFscene
 
 	initCameras()
 	{
-		this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(80, 80, 80), vec3.fromValues(0, 0, 0));
+		this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(50, 50, 50), vec3.fromValues(0, 0, 0));
 	};
 
 	initLights()
@@ -124,18 +117,9 @@ class LightingScene extends CGFscene
 		this.setGlobalAmbientLight(0.4, 0.4, 0.4, 1.0);
 
 		this.lights[0].setPosition(4, 6, 1, 1);
-		//this.lights[0].setVisible(true);
-
 		this.lights[1].setPosition(10.5, 6.0, 1.0, 1.0);
-		//this.lights[1].setPosition(true);
-
-		//Farol esquerdo
 		this.lights[2].setPosition(7.8, 1.5, 4.9);
-		//this.lights[2].setVisible(true);
-
-		//Farol direito
 		this.lights[3].setPosition(7.8, 1.5, 6);
-		//this.lights[3].setVisible(true);
 
 		this.lights[0].setAmbient(0, 0, 0, 1);
 		this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
@@ -145,12 +129,10 @@ class LightingScene extends CGFscene
 		this.lights[1].setDiffuse(1.0, 1.0, 1.0, 1.0);
 		this.lights[1].enable();
 
-		//Farol esquerdo
 	  	this.lights[2].setAmbient(0.3, 0.3, 0.3, 1);
 		this.lights[2].setDiffuse(1, 1, 1, 1);
 		this.lights[2].enable();
 
-		//Farol direito
 	  	this.lights[3].setAmbient(0.2, 0.2, 0.2, 1.0);
 		this.lights[3].setDiffuse(0.8, 0.8, 0.8, 1.0);
 		this.lights[3].enable();
@@ -202,7 +184,6 @@ class LightingScene extends CGFscene
 		if(this.showAxis == true){
 			this.axis.display();
 		}
-
 		this.materialDefault.apply();
 
 		// ---- END Background, camera and axis setup

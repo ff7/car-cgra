@@ -6,9 +6,9 @@ class MyVehicle extends CGFobject
 	{
 		super(scene);
 
-		this.posX = 10;//7;
+		this.posX = 10;
 		this.posY = 0;
-		this.posZ = 10;//3;
+		this.posZ = 10;
 
 		this.acceleration = 0;
 		
@@ -20,9 +20,6 @@ class MyVehicle extends CGFobject
 		this.farol = new MyLamp(scene,20,20);
 		this.tejadilho = new MyRoof(scene);
 		this.wheel = new MyWheel(scene, 0,0,0);
-
-		//Para já serve enquanto não alteramos muito o carro.
-		this.materialDefault = new CGFappearance(this.scene);
 
 		this.lightAppearance = new CGFappearance(this.scene);
 		this.lightAppearance.loadTexture("../resources/images/light.png");
@@ -51,18 +48,18 @@ class MyVehicle extends CGFobject
 		this.scene.pushMatrix();
 			this.scene.scale(1,1,1.5);
 			this.scene.translate(-3,-3,-1.85);
-		if(this.scene.currVehicleAppearance == 'Camo' || this.scene.currVehicleAppearance == 0){
-			this.glass.apply();
-		}
-		if(this.scene.currVehicleAppearance == 'Flames'){
-			this.glass.apply();
-		}
-		if(this.scene.currVehicleAppearance == 'Rusty'){
-			this.brokenGlass.apply();
-		}
-		if(this.scene.currVehicleAppearance == 'Murica'){
-			this.glass.apply();
-		}
+			if(this.scene.currVehicleAppearance == 'Camo' || this.scene.currVehicleAppearance == 0){
+				this.glass.apply();
+			}
+			if(this.scene.currVehicleAppearance == 'Flames'){
+				this.glass.apply();
+			}
+			if(this.scene.currVehicleAppearance == 'Rusty'){
+				this.brokenGlass.apply();
+			}
+			if(this.scene.currVehicleAppearance == 'Murica'){
+				this.glass.apply();
+			}
 			this.tejadilho.display();
 		this.scene.popMatrix();
 
@@ -124,8 +121,7 @@ class MyVehicle extends CGFobject
 			this.scene.translate(0,-4.4,6.8-2.5 - 7.8);
 			this.scene.scale(0.6,0.6,0.6);
 			this.scene.rotate(this.rotY*Math.PI/2, 0,1, 0);
-			this.scene.rotate(-this.rotZ*Math.PI/2,0,0,1);
-			//this.scene.translate(5,0,-2.5);			
+			this.scene.rotate(-this.rotZ*Math.PI/2,0,0,1);			
 			this.wheel.display();
 		this.scene.popMatrix();
 
@@ -138,7 +134,7 @@ class MyVehicle extends CGFobject
 		{
 			this.posX += Math.cos(this.rotation * degToRad) * this.scene.speed*currTime*1/50;
 			this.posZ -= Math.sin(this.rotation * degToRad) * this.scene.speed*currTime*1/50;
-			this.rotZ += 0.3;	
+			this.rotZ += 0.3*this.scene.speed;	
 
 			if (a == true)
 			{
@@ -159,7 +155,7 @@ class MyVehicle extends CGFobject
 
 		if (s == true)
 		{
-			this.rotZ -= 0.3;
+			this.rotZ -= 0.3*this.scene.speed;
 			this.posX -= Math.cos(this.rotation * degToRad) * this.scene.speed*currTime*1/50;
 			this.posZ += Math.sin(this.rotation * degToRad) * this.scene.speed*currTime*1/50;
 			

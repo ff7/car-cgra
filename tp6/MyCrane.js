@@ -20,9 +20,6 @@ class MyCrane extends CGFobject
 
 		this.rotBase = 0;
 		this.rotArticulacao = 0;
-
-		this.bodyAppearance = new CGFappearance(this.scene);
-		this.bodyAppearance.loadTexture("../resources/images/darkRed.png");
 	};
 
 	display() 
@@ -32,7 +29,6 @@ class MyCrane extends CGFobject
 			this.scene.rotate(Math.PI/2,1,0,0);
 			this.scene.scale(2,2,0.8);
 			this.scene.translate(0,0,-1);
-			//this.bodyAppearance.apply();
 			this.cylinder.display();
 		this.scene.popMatrix();
 
@@ -43,7 +39,6 @@ class MyCrane extends CGFobject
 			this.scene.rotate(-Math.PI/3,1,0,0);
 			this.scene.scale(0.5,0.5,15);
 			this.scene.translate(0,0,0.02);
-			//this.bodyAppearance.apply();
 			this.cylinder.display();
 		this.scene.popMatrix();
 
@@ -51,7 +46,6 @@ class MyCrane extends CGFobject
 		this.scene.pushMatrix();
 			this.scene.rotate(this.rotBase * Math.PI/2,0,1,0);
 			this.scene.translate(8,14,-0.5);
-			//this.scene.rotate(this.rotArticulacao * Math.PI/2,0,0,1);
 			this.cylinder.display();
 		this.scene.popMatrix();
 
@@ -67,8 +61,7 @@ class MyCrane extends CGFobject
 
 		//Fio do íman
 		this.scene.pushMatrix();
-		this.scene.rotate(this.rotBase * Math.PI/2,0,1,0);
-			//this.scene.translate(8,14,0);
+			this.scene.rotate(this.rotBase * Math.PI/2,0,1,0);
 		 	this.scene.translate(8+11.5*Math.cos(this.rotArticulacao),14-11.5*Math.sin(this.rotArticulacao), 0);
 		 	this.scene.scale(0.1,5,0.1);
 			this.scene.rotate(Math.PI/2,1,0,0);
@@ -77,8 +70,7 @@ class MyCrane extends CGFobject
 
 		//Iman
 		this.scene.pushMatrix();
-		this.scene.rotate(this.rotBase * Math.PI/2,0,1,0);
-			//this.scene.translate(8,9.75,0);
+			this.scene.rotate(this.rotBase * Math.PI/2,0,1,0);
 			this.scene.translate(8+11.5*Math.cos(this.rotArticulacao),9.75-11.5*Math.sin(this.rotArticulacao), 0);
 			this.scene.scale(2,0.8,2);
 			this.scene.rotate(Math.PI/2,1,0,0);
@@ -92,11 +84,10 @@ class MyCrane extends CGFobject
 			if (this.drawCar == false)
 				this.car.display();
 		this.scene.popMatrix();
-
-
  	};
 
  	resetFlags(){
+
  		this.down = true;
 		this.up = false;
 		this.left = false;
@@ -105,13 +96,11 @@ class MyCrane extends CGFobject
 		this.drop = true;
 		this.isMoving = true;
 		this.drawCar = true;
+ 	
  	};
 
 	update(move)
 	{
-// 		if (move == true)
-// 			this.down = true;
-
  		if (this.down == true)
  		{
  			this.rotArticulacao += 0.01;

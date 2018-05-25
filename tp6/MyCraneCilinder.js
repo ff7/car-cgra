@@ -8,14 +8,9 @@ class MyCraneCilinder extends CGFobject
 
 		this.roda = new MyCilinder(scene, 30, 20);
 		this.jante = new MyClockImage(scene,20);
-
-
-		//Para já serve enquanto não alteramos muito o carro.
-		this.materialDefault = new CGFappearance(this.scene);
 		
 		this.bodyAppearance = new CGFappearance(this.scene);
 		this.bodyAppearance.loadTexture("../resources/images/darkRed.png");
-
 	};
 
 	display() 
@@ -37,7 +32,6 @@ class MyCraneCilinder extends CGFobject
 			this.bodyAppearance.apply();
 			this.jante.display();
 		this.scene.popMatrix();
-
 
 	};
 
