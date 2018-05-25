@@ -60,8 +60,8 @@ class LightingScene extends CGFscene
 						 [ 50.0 , 50.0 , 5.0, 7.0, 10.5, 6.4, 4.3, 1.3,0],
 						 [ 11.0 , 9.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,0],
 						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 22.0, 20.0,0],
-						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 2.4, 18.0, 16.0,0],
-						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 2.4, 18.0, 19.0,0],
+						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 18.0, 16.0,0],
+						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 18.0, 19.0,0],
 						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,0],
 						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 6.0,0],
 						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 6.0,0]
@@ -78,11 +78,12 @@ class LightingScene extends CGFscene
 		this.skyDome = new MySkyDome(this, 20, 20);
 		this.crane = new MyCrane(this);
 		this.spot = new MyQuad(this);
-		this.keepMoving = false;
+
 		// Scene elements end
 
 		// Flags
 		this.isCarPlaced = false;
+		this.keepMoving = false;
 
 		// Materials and appearances
 		this.materialDefault = new CGFappearance(this);
@@ -115,7 +116,7 @@ class LightingScene extends CGFscene
 
 	initCameras()
 	{
-		this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(40, 40, 40), vec3.fromValues(0, 0, 0));
+		this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(60, 60, 60), vec3.fromValues(0, 0, 0));
 	};
 
 	initLights()
@@ -208,7 +209,8 @@ class LightingScene extends CGFscene
 
 		// Terrain
 		this.pushMatrix();
-			this.scale(2,2,2);
+			this.scale(3,3,3);
+			this.translate(-6,0,-5);
 			this.terrain.display();
 		this.popMatrix();
 
@@ -223,7 +225,6 @@ class LightingScene extends CGFscene
 		//SkyDome
 		this.pushMatrix();
 			this.rotate(-Math.PI/2,1,0,0);
-			this.translate(0,0,-30);
 			this.scale(100,100,100);
 			this.skyAppearance.apply();
 			this.skyDome.display();
@@ -231,7 +232,6 @@ class LightingScene extends CGFscene
 
 		this.pushMatrix();
 			this.rotate(Math.PI/2,1,0,0);
-			this.translate(0,0,-30);
 			this.scale(100,100,100);
 			this.skyAppearance.apply();
 			this.skyDome.display();
@@ -261,6 +261,7 @@ class LightingScene extends CGFscene
 			this.spotArrival.apply();
 			this.spot.display();
 		this.popMatrix();
+
 	};
 
 	reDrawCar(x, z)

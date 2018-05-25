@@ -18,7 +18,7 @@ class MyVehicle extends CGFobject
 
 		this.corpo = new MyUnitCubeQuad(scene);
 		this.farol = new MyLamp(scene,20,20);
-		this.tejadilho = new MyTrapezoid(scene, 1, 2, 1);
+		this.tejadilho = new MyRoof(scene);
 		this.wheel = new MyWheel(scene, 0,0,0);
 
 		//Para já serve enquanto não alteramos muito o carro.
@@ -26,6 +26,20 @@ class MyVehicle extends CGFobject
 
 		this.lightAppearance = new CGFappearance(this.scene);
 		this.lightAppearance.loadTexture("../resources/images/light.png");
+
+		this.glass = new CGFappearance(this.scene);
+		this.glass.setAmbient(1,1,1,1);
+		this.glass.setDiffuse(1,1,1,1);
+		this.glass.setSpecular(1,1,1,1);
+		this.glass.setShininess(0);
+		this.glass.loadTexture("../resources/images/glass.jpg");
+
+		this.brokenGlass = new CGFappearance(this.scene);
+		this.brokenGlass.setAmbient(1,1,1,1);
+		this.brokenGlass.setDiffuse(1,1,1,1);
+		this.brokenGlass.setSpecular(1,1,1,1);
+		this.brokenGlass.setShininess(0);
+		this.brokenGlass.loadTexture("../resources/images/brokeGlass.jpg");
 
 	};
 
@@ -35,8 +49,20 @@ class MyVehicle extends CGFobject
 		
 		// Tejadilho
 		this.scene.pushMatrix();
-			this.scene.scale(2,1,2);
-			this.scene.translate(-1.50,-3,-1.5);
+			this.scene.scale(1,1,1.5);
+			this.scene.translate(-3,-3,-1.85);
+		if(this.scene.currVehicleAppearance == 'Camo' || this.scene.currVehicleAppearance == 0){
+			this.glass.apply();
+		}
+		if(this.scene.currVehicleAppearance == 'Flames'){
+			this.glass.apply();
+		}
+		if(this.scene.currVehicleAppearance == 'Rusty'){
+			this.brokenGlass.apply();
+		}
+		if(this.scene.currVehicleAppearance == 'Murica'){
+			this.glass.apply();
+		}
 			this.tejadilho.display();
 		this.scene.popMatrix();
 
