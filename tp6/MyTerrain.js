@@ -23,13 +23,11 @@ class MyTerrain extends Plane
 		this.scene.pushMatrix();
 
 			this.scene.rotate(-90 * degToRad, 1, 0, 0);
-			this.scene.scale(50, 50, 50);
+			
+			this.scene.scale(50, 50, 1);
 		
-			if(this.scene.currTerrainAppearance == 'Dirt'|| this.scene.currTerrainAppearance == 0)
-				this.terrainAppearance.apply();
-
-			if(this.scene.currTerrainAppearance == 'Sand')
-				this.sandAppearance.apply();
+			if(this.scene.currTerrainAppearance == 'Dirt'|| this.scene.currTerrainAppearance == 0) this.terrainAppearance.apply();
+			else this.sandAppearance.apply();
 
 			super.display();
 		this.scene.popMatrix();

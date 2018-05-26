@@ -22,13 +22,13 @@ class MyCraneCilinder extends CGFobject
 		this.scene.popMatrix();
 
 		this.scene.pushMatrix();
-			this.scene.translate(0,0,1);
+			this.scene.translate(0, 0, 1);
 			this.bodyAppearance.apply();
 			this.jante.display();
 		this.scene.popMatrix();
 
 		this.scene.pushMatrix();
-			this.scene.rotate(Math.PI, 0,1,0);
+			this.scene.rotate(Math.PI, 0, 1, 0);
 			this.bodyAppearance.apply();
 			this.jante.display();
 		this.scene.popMatrix();

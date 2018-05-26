@@ -20,7 +20,6 @@ serialInclude([
 	'MyVehicle.js',
 	'MyTerrain.js',
 	'MyInterface.js',
-	'MyTriangPrism.js',
 	'MyTrapezoid.js',
 	'MySkyDome.js',
 	'MyWheel.js',

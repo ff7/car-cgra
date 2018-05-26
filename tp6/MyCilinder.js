@@ -21,16 +21,14 @@ class MyCilinder extends CGFobject
 		this.normals = [];
 		this.texCoords = [];
 
-		let ang1, ang2;
-
-		let i, j, k;
 		var ang = 2*Math.PI/this.slices;
 
-		for(j = 0; j <= this.stacks; j++){
-			for(i = 0; i < this.slices; i++){
+		for(let j = 0; j <= this.stacks; j++){
 
-				ang1 = Math.cos(i*ang);
-				ang2 = Math.sin(i*ang);
+			for(let i = 0; i < this.slices; i++){
+
+				let ang1 = Math.cos(i*ang);
+				let ang2 = Math.sin(i*ang);
 
 				this.vertices.push(ang1, ang2, j*1/this.stacks);
 				this.normals.push(ang1, ang2, 0);
@@ -39,14 +37,20 @@ class MyCilinder extends CGFobject
 			}	
 		}
 
-		for(k = 0; k < (this.stacks*this.slices); k++){
+		for(let k = 0; k < (this.stacks*this.slices); k++){
+
 			if((k+1)%this.slices==0){
+
     			this.indices.push(k,k+1-this.slices, k+1);
      	        this.indices.push(k,k+1, k+this.slices);
+     	        
   			 }
+
   			 if((k+1)%this.slices!=0){
+
   			 	 this.indices.push(k, k+1, k+1+this.slices);
     			 this.indices.push(k, k+1+this.slices, k+this.slices);
+
   			 }
 		}
 			

@@ -5,6 +5,7 @@ class MyCrane extends CGFobject
 	constructor(scene) 
 	{
 		super(scene);
+
 		this.cylinder = new MyCraneCilinder(scene);
 		this.cube = new MyUnitCubeQuad(scene);
 		this.car = new MyVehicle(scene);
@@ -81,8 +82,8 @@ class MyCrane extends CGFobject
 		this.scene.pushMatrix();
 			this.scene.rotate(this.rotBase * Math.PI/2,0,1,0);
 			this.scene.translate(11+11.5*Math.cos(this.rotArticulacao),11.5-11.5*Math.sin(this.rotArticulacao), 2);
-			if (this.drawCar == false)
-				this.car.display();
+			
+			if (!this.drawCar) this.car.display();
 		this.scene.popMatrix();
  	};
 
@@ -101,7 +102,7 @@ class MyCrane extends CGFobject
 
 	update(move)
 	{
- 		if (this.down == true)
+ 		if (this.down)
  		{
  			this.rotArticulacao += 0.01;
  			if (this.rotArticulacao > 0.58)
@@ -116,7 +117,7 @@ class MyCrane extends CGFobject
  				this.up = true;
  			}
  		}
- 		else if (this.up == true)
+ 		else if (this.up)
 		{
 			this.rotArticulacao -= 0.01;
 			 if (this.rotArticulacao < 0.01)
@@ -132,7 +133,7 @@ class MyCrane extends CGFobject
 
  			}
 		}
-		else if (this.left == true)
+		else if (this.left)
 		{
 			this.rotBase += 0.01;
 			if (this.rotBase > 2.9)
@@ -141,7 +142,7 @@ class MyCrane extends CGFobject
 				this.down = true;
 			}
 		}
-		else if (this.right == true)
+		else if (this.right)
 		{
 			this.rotBase -= 0.01;
 			if (this.rotBase < 0.01)

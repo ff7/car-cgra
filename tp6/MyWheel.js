@@ -65,40 +65,34 @@ class MyWheel extends CGFobject
 			this.roda.display();
 		this.scene.popMatrix();
 
-		// Jantes Esquerda da Roda Esquerda da Tras
+		// Jantes Esquerda
 		this.scene.pushMatrix();
 			this.scene.translate(0,0,1);
-			if(this.scene.currVehicleAppearance == 'Camo' || this.scene.currVehicleAppearance == 0){
-				this.janteAppearance.apply();
-			}
-			if(this.scene.currVehicleAppearance == 'Flames'){
-				this.janteAppearance.apply();
-			}
-			if(this.scene.currVehicleAppearance == 'Rusty'){
-				this.janteRusty.apply();
-			}
-			if(this.scene.currVehicleAppearance == 'Murica'){
-				this.janteMurica.apply();
-			}
+			
+			if(this.scene.currVehicleAppearance == 'Camo' || this.scene.currVehicleAppearance == 0) this.janteAppearance.apply();
+			
+			if(this.scene.currVehicleAppearance == 'Flames') this.janteAppearance.apply();
+			
+			if(this.scene.currVehicleAppearance == 'Rusty')	this.janteRusty.apply();
+			
+			if(this.scene.currVehicleAppearance == 'Murica') this.janteMurica.apply();
 
 			this.jante.display();
 		this.scene.popMatrix();
 
-		// Jantes Direita da Roda Esquerda da Tras
+		// Jantes Direita
 		this.scene.pushMatrix();
+			
 			this.scene.rotate(Math.PI, 0,1,0);
-			if(this.scene.currVehicleAppearance == 'Camo' || this.scene.currVehicleAppearance == 0){
-				this.janteAppearance.apply();
-			}
-			if(this.scene.currVehicleAppearance == 'Flames'){
-				this.janteAppearance.apply();
-			}
-			if(this.scene.currVehicleAppearance == 'Rusty'){
-				this.janteRusty.apply();
-			}
-			if(this.scene.currVehicleAppearance == 'Murica'){
-				this.janteMurica.apply();
-			}
+			
+			if(this.scene.currVehicleAppearance == 'Camo' || this.scene.currVehicleAppearance == 0) this.janteAppearance.apply();
+			
+			if(this.scene.currVehicleAppearance == 'Flames') this.janteAppearance.apply();
+			
+			if(this.scene.currVehicleAppearance == 'Rusty')	this.janteRusty.apply();
+			
+			if(this.scene.currVehicleAppearance == 'Murica') this.janteMurica.apply();
+
 			this.jante.display();
 		this.scene.popMatrix();
 
@@ -106,13 +100,13 @@ class MyWheel extends CGFobject
 	};
 
 		update(currTime, w, s) {
-		if (w == true)
+		if (w)
 		{
 			this.x += 0.1;
 			this.rotZ += 0.1;	
 		}
 
-		if (s == true)
+		if (s)
 		{
 			this.x -= 0.1;
 			this.rotZ -= 0.1;

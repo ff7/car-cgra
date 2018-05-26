@@ -5,7 +5,6 @@ class Plane extends CGFobject{
 	{
 		super(scene);
 
-		// nrDivs = 1 if not provided
 		nrDivs = typeof nrDivs !== 'undefined' ? nrDivs : 1;
 
 		this.nrDivs = nrDivs;
@@ -45,21 +44,25 @@ class Plane extends CGFobject{
 		// Uncomment below to init texCoords
 
 		var yCoord = 0.5;
+
 		var t = this.minT;
 		var s = this.minS;
-		var increaseS = (this.maxS - this.minS)/this.nrDivs;
-		var increaseT = (this.maxT - this.minT)/this.nrDivs;
+
+		var increaseS = (this.maxS - this.minS) / this.nrDivs;
+		var increaseT = (this.maxT - this.minT) / this.nrDivs;
 
 		for (var j = 0; j <= this.nrDivs; j++) 
 		{
 			var xCoord = -0.5;
+
 			for (var i = 0; i <= this.nrDivs; i++) 
 			{
-				
 				let z = this.altimetry[i][j];
-				this.vertices.push(xCoord, yCoord, z/50);
+			
+				this.vertices.push(xCoord, yCoord, z);
 				
-				this.texCoords.push(s + increaseS*i,t + increaseT*j);
+				this.texCoords.push(s + increaseS*i, t + increaseT*j);
+			
 				this.normals.push(0,0,1);
 				
 				xCoord += this.patchLength;
@@ -81,8 +84,7 @@ class Plane extends CGFobject{
 
 		this.indices = [];
 		var ind=0;
-
-
+		
 		for (var j = 0; j < this.nrDivs; j++) 
 		{
 			for (var i = 0; i <= this.nrDivs; i++) 

@@ -17,9 +17,9 @@ class MyVehicle extends CGFobject
 		this.rotY = 0;
 
 		this.corpo = new MyUnitCubeQuad(scene);
-		this.farol = new MyLamp(scene,20,20);
+		this.farol = new MyLamp(scene, 20, 20);
 		this.tejadilho = new MyRoof(scene);
-		this.wheel = new MyWheel(scene, 0,0,0);
+		this.wheel = new MyWheel(scene, 0, 0, 0);
 
 		this.lightAppearance = new CGFappearance(this.scene);
 		this.lightAppearance.loadTexture("../resources/images/light.png");
@@ -46,82 +46,80 @@ class MyVehicle extends CGFobject
 		
 		// Tejadilho
 		this.scene.pushMatrix();
-			this.scene.scale(1,1,1.5);
-			this.scene.translate(-3,-3,-1.85);
-			if(this.scene.currVehicleAppearance == 'Camo' || this.scene.currVehicleAppearance == 0){
-				this.glass.apply();
-			}
-			if(this.scene.currVehicleAppearance == 'Flames'){
-				this.glass.apply();
-			}
-			if(this.scene.currVehicleAppearance == 'Rusty'){
-				this.brokenGlass.apply();
-			}
-			if(this.scene.currVehicleAppearance == 'Murica'){
-				this.glass.apply();
-			}
+			this.scene.scale(1, 1, 1.5);
+
+			this.scene.translate(-3, -3, -1.85);
+			
+			if(this.scene.currVehicleAppearance == 'Camo' || this.scene.currVehicleAppearance == 0) this.glass.apply();
+			
+			if(this.scene.currVehicleAppearance == 'Flames') this.glass.apply();			
+			
+			if(this.scene.currVehicleAppearance == 'Rusty') this.brokenGlass.apply();
+			
+			if(this.scene.currVehicleAppearance == 'Murica') this.glass.apply();
+			
 			this.tejadilho.display();
 		this.scene.popMatrix();
 
 		// Corpo
 		this.scene.pushMatrix();
-			this.scene.scale(5,1,2);
-			this.scene.translate(-0.5,-4,-1);
+			this.scene.scale(5, 1, 2);
+			this.scene.translate(-0.5, -4, -1);
 			this.corpo.display();
 		this.scene.popMatrix();
 		
 
 		//farol esquerdo
 		this.scene.pushMatrix();
-			this.scene.rotate(-90*degToRad,1,0,0);
-			this.scene.rotate(90*degToRad,0,1,0);
-			this.scene.scale(0.3,0.3,0.3)
-			this.scene.translate(13,5.4,0);
+			this.scene.rotate(-90*degToRad, 1, 0, 0);
+			this.scene.rotate(90*degToRad, 0, 1, 0);
+			this.scene.scale(0.3, 0.3, 0.3)
+			this.scene.translate(13, 5.4, 0);
 			this.lightAppearance.apply();
 			this.farol.display();
 		this.scene.popMatrix();
 
 		//farol direito
 		this.scene.pushMatrix();
-			this.scene.rotate(-90*degToRad,1,0,0);
-			this.scene.rotate(90*degToRad,0,1,0);
-			this.scene.scale(0.3,0.3,0.3)
-			this.scene.translate(13,8.5,0);
+			this.scene.rotate(-90*degToRad, 1, 0, 0);
+			this.scene.rotate(90*degToRad, 0, 1, 0);
+			this.scene.scale(0.3, 0.3, 0.3)
+			this.scene.translate(13, 8.5, 0);
 			this.lightAppearance.apply();
 			this.farol.display();
 		this.scene.popMatrix();
 
 		// Roda Esquerda de Tras
 		this.scene.pushMatrix();
-			this.scene.translate(-5,-4.4,6.8 -8);
-			this.scene.scale(0.6,0.6,0.6);
-			this.scene.rotate(-this.rotZ*Math.PI/2,0,0,1);
+			this.scene.translate(-5, -4.4, -1.2);
+			this.scene.scale(0.6, 0.6, 0.6);
+			this.scene.rotate(-this.rotZ*Math.PI/2, 0, 0, 1);
 			this.wheel.display();
 		this.scene.popMatrix();
 
 		// Roda Direita de Tras
 		this.scene.pushMatrix();
-			this.scene.translate(-5,-4.4,6.8-2.5 - 7.8);
-			this.scene.scale(0.6,0.6,0.6);
-			this.scene.rotate(-this.rotZ*Math.PI/2,0,0,1);
+			this.scene.translate(-5, -4.4, -3.5);
+			this.scene.scale(0.6, 0.6, 0.6);
+			this.scene.rotate(-this.rotZ*Math.PI/2, 0, 0, 1);
 			this.wheel.display();
 		this.scene.popMatrix();
 
 		// Roda Esquerda de Frente
 		this.scene.pushMatrix();
-			this.scene.translate(0,-4.4,6.8 -8);
-			this.scene.scale(0.6,0.6,0.6);
-			this.scene.rotate(this.rotY*Math.PI/2, 0,1, 0);
-			this.scene.rotate(-this.rotZ*Math.PI/2,0,0,1);
+			this.scene.translate(0, -4.4, -1.2);
+			this.scene.scale(0.6, 0.6, 0.6);
+			this.scene.rotate(this.rotY*Math.PI/2, 0, 1, 0);
+			this.scene.rotate(-this.rotZ*Math.PI/2, 0, 0, 1);
 			this.wheel.display();
 		this.scene.popMatrix();
 
 		// Roda Direita de Frente
 		this.scene.pushMatrix();
-			this.scene.translate(0,-4.4,6.8-2.5 - 7.8);
-			this.scene.scale(0.6,0.6,0.6);
-			this.scene.rotate(this.rotY*Math.PI/2, 0,1, 0);
-			this.scene.rotate(-this.rotZ*Math.PI/2,0,0,1);			
+			this.scene.translate(0, -4.4, -3.5);
+			this.scene.scale(0.6, 0.6, 0.6);
+			this.scene.rotate(this.rotY*Math.PI/2, 0, 1, 0);
+			this.scene.rotate(-this.rotZ*Math.PI/2, 0, 0, 1);			
 			this.wheel.display();
 		this.scene.popMatrix();
 
@@ -130,46 +128,40 @@ class MyVehicle extends CGFobject
 	};
 
 	update(currTime, w, s, d, a) {
-		if (w == true)
+		if (w)
 		{
 			this.posX += Math.cos(this.rotation * degToRad) * this.scene.speed*currTime*1/50;
 			this.posZ -= Math.sin(this.rotation * degToRad) * this.scene.speed*currTime*1/50;
 			this.rotZ += 0.3*this.scene.speed;	
 
-			if (a == true)
+			if (a)
 			{
-				if (this.rotY < 0.2)
-					this.rotY += currTime * 3/1000;
+				if (this.rotY < 0.2) this.rotY += currTime * 3/1000;
 				this.rotation += this.scene.speed * currTime * 1/10;
-			
 			}
 
-			if (d == true)
+			if (d)
 			{	
-				if (this.rotY > -0.2)
-					this.rotY -= currTime * 3/1000;
+				if (this.rotY > -0.2) this.rotY -= currTime * 3/1000;
 				this.rotation -= this.scene.speed * currTime * 1/10;
-			
 			}
 		}
 
-		if (s == true)
+		if (s)
 		{
 			this.rotZ -= 0.3*this.scene.speed;
 			this.posX -= Math.cos(this.rotation * degToRad) * this.scene.speed*currTime*1/50;
 			this.posZ += Math.sin(this.rotation * degToRad) * this.scene.speed*currTime*1/50;
 			
-			if (a == true)
+			if (a)
 			{
-				if (this.rotY < 0.2)
-					this.rotY += currTime * 3/1000;
+				if (this.rotY < 0.2) this.rotY += currTime * 3/1000;
 				this.rotation -= this.scene.speed * currTime * 1/10;
 			}
 
-			if (d == true)
+			if (d)
 			{	
-				if (this.rotY > -0.2)
-					this.rotY -= currTime * 3/1000;
+				if (this.rotY > -0.2) this.rotY -= currTime * 3/1000;
 				this.rotation += this.scene.speed * currTime * 1/10;
 			}
 		}

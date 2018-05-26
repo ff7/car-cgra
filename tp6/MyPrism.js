@@ -14,9 +14,11 @@ class MyPrism extends CGFobject
 
 		let angulo = (2*Math.PI)/this.slices;
 		let ang = 0;
+		
 		this.vertices = [];
 		this.indices = [];
 		this.normals = [];
+		
 		let v = 0;
 		let stackSize = 1/this.stacks;
 

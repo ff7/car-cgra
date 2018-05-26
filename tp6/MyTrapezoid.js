@@ -12,14 +12,14 @@ class MyTrapezoid extends CGFobject
 	 this.vertices = [
       -1.5, -0.5, 0,
       1.5, -0.5, 0,
-        1, 0.5, 0,
-        -1, 0.5, 0
+      1, 0.5, 0,
+      -1, 0.5, 0
 
     ];
 
     this.indices = [
-      1,2,3,
-        0, 1, 3
+      1, 2, 3,
+      0, 1, 3
     ];
 
     this.normals = [
@@ -30,10 +30,10 @@ class MyTrapezoid extends CGFobject
     ];
 
     this.texCoords = [
-        0,1,
-        1,1,
-        0.85,0,
-        0.1,0
+        0, 1,
+        1, 1,
+        0.85, 0,
+        0.1, 0
     ];
 
 		this.primitiveType=this.scene.gl.TRIANGLES;

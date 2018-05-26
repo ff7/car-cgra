@@ -21,9 +21,8 @@ class MyLamp extends CGFobject
 		this.normals = [];
 		this.texCoords = [];
 
-		var ang = Math.PI;
-		var ang1 = 2*Math.PI/this.slices;//theta
-		var ang2 = (Math.PI/2)/this.stacks;//phi
+		var ang1 = 2*Math.PI/this.slices; //theta
+		var ang2 = (Math.PI/2)/this.stacks; //phi
 
 		for(let j = 0; j <= this.stacks ; j++){
 
@@ -34,13 +33,16 @@ class MyLamp extends CGFobject
 					let z = Math.sin(ang2*j);
 
 					this.vertices.push(x,y,z);
+					
 					this.normals.push(x,y,z);
+					
 					this.texCoords.push(i * 1/this.slices, j * 1/this.stacks);
 					
 			}	
 		}
 
 		for(let i = 0; i < this.stacks; i++){
+			
 			for(let j = 0; j < this.slices; j++){
 
            		 this.indices.push(i * (this.slices + 1) + j, i * (this.slices + 1) + 1 + j, (i+1) * (this.slices+1)+j);
