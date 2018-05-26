@@ -5,7 +5,7 @@ class MyCrane extends CGFobject
 	constructor(scene) 
 	{
 		super(scene);
-		this.cylinder = new MyCraneCilinder(scene,0,0,0);
+		this.cylinder = new MyCraneCilinder(scene);
 		this.cube = new MyUnitCubeQuad(scene);
 		this.car = new MyVehicle(scene);
 
