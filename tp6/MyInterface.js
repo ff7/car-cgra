@@ -34,6 +34,9 @@ class MyInterface extends CGFinterface {
 		var group=this.gui.addFolder("Axis");
 		group.add(this.scene, 'showAxis');
 
+		var group=this.gui.addFolder("Polyhedrons");
+		group.add(this.scene, 'showPolyhedrons');
+
 		//GRUPO DE LUZES
 		var groupLights=this.gui.addFolder("Lights");
 

@@ -45,6 +45,9 @@ class LightingScene extends CGFscene
 		//Axis section
 		this.showAxis=true;
 
+		//Polyhedrons sextion
+		this.showPolyhedrons=false;
+
 		//Lights section
 		this.light_0=true;
 		this.light_1=true;
@@ -74,6 +77,11 @@ class LightingScene extends CGFscene
 
 		this.terrain = new MyTerrain(this, this.nrDivs, this.altimetry);
 		this.skyDome = new MySkyDome(this, 20, 20);
+
+		this.cube = new MyUnitCubeQuad(this);
+		this.cilinder = new MyCilinder(this, 16, 20);
+		this.trapezoid = new MyRoof(this);
+		this.semisphere = new MyLamp(this, 8, 20);
 		// Scene elements end
 
 		// Flags
@@ -104,6 +112,9 @@ class LightingScene extends CGFscene
 		this.spotArrival.setSpecular(1.0, 1.0, 1.0, 1.0);
 		this.spotArrival.setShininess(0.0);
 		this.spotArrival.loadTexture("../resources/images/arrival.png");
+
+		this.americaFlag = new CGFappearance(this);
+		this.americaFlag.loadTexture("../resources/images/muricaFlag.png");
 		// Materials end
 
 		this.setUpdatePeriod(1000/frameRate);
@@ -182,7 +193,7 @@ class LightingScene extends CGFscene
 
 		// Terrain
 		this.pushMatrix();
-			this.terrain.display();
+			if(!this.showPolyhedrons) this.terrain.display();
 		this.popMatrix();
 		// End terrain
 
@@ -190,7 +201,8 @@ class LightingScene extends CGFscene
 		this.pushMatrix();
 			this.translate(this.car.posX, 5.1, this.car.posZ);
 			this.rotate(this.car.rotation * degToRad, 0, 1, 0);
-			if (this.crane.drawCar) this.car.display();
+			if(!this.showPolyhedrons)
+				if (this.crane.drawCar) this.car.display();
 		this.popMatrix();
 		// End car
 
@@ -199,20 +211,20 @@ class LightingScene extends CGFscene
 			this.rotate(-Math.PI/2, 1, 0, 0);
 			this.scale(50, 50, 50);
 			this.skyAppearance.apply();
-			this.skyDome.display();
+			if(!this.showPolyhedrons) this.skyDome.display();
 		this.popMatrix();
 
 		this.pushMatrix();
 			this.rotate(Math.PI/2, 1, 0, 0);
 			this.scale(50, 50, 50);
 			this.skyAppearance.apply();
-			this.skyDome.display();
+			if(!this.showPolyhedrons) this.skyDome.display();
 		this.popMatrix();
 		// End sky
 
 		// Crane
 		this.pushMatrix();
-			this.crane.display();
+			if(!this.showPolyhedrons) this.crane.display();
 		this.popMatrix();
 		// End crane
 
@@ -222,7 +234,7 @@ class LightingScene extends CGFscene
 			this.scale(7, 1, -4);
 			this.rotate(Math.PI/2, 1, 0, 0);
 			this.spotDepart.apply();
-			this.spot.display();
+			if(!this.showPolyhedrons) this.spot.display();
 		this.popMatrix();
 
 		//Spot no chão para o guindaste deixar o carro
@@ -233,7 +245,24 @@ class LightingScene extends CGFscene
 			this.rotate(Math.PI/2, 0, 0, 1);
 			this.scale(2, 0.6, 1);
 			this.spotArrival.apply();
-			this.spot.display();
+			if(!this.showPolyhedrons) this.spot.display();
+		this.popMatrix();
+
+		//Poliedros
+		this.pushMatrix();
+			this.translate(6,0,0);
+			this.americaFlag.apply();
+			if(this.showPolyhedrons) this.cilinder.display();
+		this.popMatrix();
+
+		this.pushMatrix();
+			this.translate(2,0,0);
+			if(this.showPolyhedrons) this.trapezoid.display();
+		this.popMatrix();
+
+		this.pushMatrix();
+			this.translate(10,0,0);
+			if(this.showPolyhedrons) this.semisphere.display();
 		this.popMatrix();
 
 	};
